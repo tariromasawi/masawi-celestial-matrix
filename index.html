@@ -8,321 +8,135 @@
   <link rel="manifest" href="./manifest.json">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --purple: #7c3aed;
-      --violet: #a78bfa;
-      --glow: #c084fc;
-      --green: #4ade80;
-    }
+    :root { --purple: #7c3aed; --violet: #a78bfa; --glow: #c084fc; --green: #4ade80; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #000;
-      font-family: 'Cinzel', serif;
-      color: #e0d4ff;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+    body { background: #000; font-family: 'Cinzel', serif; color: #e0d4ff; overflow-x: hidden; min-height: 100vh; }
     .cosmos {
-      position: relative;
-      min-height: 100vh;
+      position: relative; min-height: 100vh;
       background: radial-gradient(ellipse at 50% 30%, #1a0533 0%, #0a001f 40%, #000 80%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 24px 14px 40px;
+      display: flex; flex-direction: column; align-items: center; padding: 24px 14px 80px;
     }
-    #matrix-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .header-seal {
-      position: relative;
-      z-index: 20;
-      text-align: center;
-      margin-bottom: 14px;
-      max-width: 920px;
-    }
+    #matrix-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+    .header-seal { position: relative; z-index: 20; text-align: center; margin-bottom: 12px; max-width: 920px; }
     .header-seal h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.05rem, 3vw, 1.5rem);
-      letter-spacing: 3px;
-      background: linear-gradient(90deg, #e0d4ff, #c084fc, #a78bfa, #e0d4ff);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shine 4s linear infinite;
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.05rem, 3vw, 1.5rem); letter-spacing: 3px;
+      background: linear-gradient(90deg, #e0d4ff, #c084fc, #a78bfa, #e0d4ff); background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
     }
     @keyframes shine { to { background-position: 200% center; } }
-    .header-seal p {
-      font-size: 0.7rem;
-      opacity: 0.7;
-      margin-top: 5px;
-      letter-spacing: 1px;
+    .header-seal p { font-size: 0.7rem; opacity: 0.7; margin-top: 5px; letter-spacing: 1px; }
+    .nav {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 10px 0 14px; position: relative; z-index: 20;
     }
-    .nav-link {
-      display: inline-block;
-      margin-top: 10px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.68rem;
-      color: #c9a0ff;
-      text-decoration: none;
-      border: 1px solid rgba(167,139,250,0.4);
-      padding: 5px 14px;
-      border-radius: 20px;
-      transition: all 0.3s;
+    .nav a {
+      color: #c9a0ff; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.68rem;
+      border: 1px solid rgba(167,139,250,0.4); padding: 6px 14px; border-radius: 20px; transition: all 0.3s;
     }
-    .nav-link:hover {
-      background: rgba(124,58,237,0.25);
-      box-shadow: 0 0 12px rgba(167,139,250,0.35);
-    }
+    .nav a:hover { background: rgba(124,58,237,0.25); box-shadow: 0 0 12px rgba(167,139,250,0.35); }
     .matrix-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-      margin: 12px 0 18px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.72rem;
-      position: relative;
-      z-index: 20;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0 0 16px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.7rem; position: relative; z-index: 20;
     }
     .matrix-bar span {
-      padding: 4px 9px;
-      border: 1px solid rgba(167,139,250,0.5);
-      border-radius: 6px;
-      color: #c9a0ff;
+      padding: 3px 9px; border: 1px solid rgba(167,139,250,0.5); border-radius: 6px; color: #c9a0ff;
       animation: glow 2.5s ease-in-out infinite alternate;
     }
-    @keyframes glow {
-      from { box-shadow: 0 0 4px rgba(167,139,250,0.3); }
-      to { box-shadow: 0 0 14px rgba(167,139,250,0.7); }
-    }
+    @keyframes glow { from { box-shadow: 0 0 4px rgba(167,139,250,0.3); } to { box-shadow: 0 0 14px rgba(167,139,250,0.7); } }
     .main-grid {
-      position: relative;
-      z-index: 10;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      max-width: 1100px;
-      width: 100%;
+      position: relative; z-index: 10; display: grid; grid-template-columns: 1fr; gap: 16px;
+      max-width: 1100px; width: 100%;
     }
-    @media (min-width: 900px) {
-      .main-grid { grid-template-columns: 1.1fr 0.9fr; }
-    }
+    @media (min-width: 900px) { .main-grid { grid-template-columns: 1.1fr 0.9fr; } }
     .talisman-card, .telemetry-card {
-      background: rgba(10, 0, 30, 0.82);
-      border: 1px solid rgba(167,139,250,0.3);
-      border-radius: 18px;
-      padding: 22px 18px;
-      box-shadow: 0 0 50px rgba(124,58,237,0.18);
-      backdrop-filter: blur(12px);
+      background: rgba(10, 0, 30, 0.84); border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 18px; padding: 20px 16px; box-shadow: 0 0 50px rgba(124,58,237,0.18); backdrop-filter: blur(12px);
     }
     .title {
-      font-size: 1.35rem;
-      letter-spacing: 2px;
-      text-align: center;
-      margin-bottom: 3px;
-      background: linear-gradient(90deg, #e0d4ff, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 1.3rem; letter-spacing: 2px; text-align: center; margin-bottom: 3px;
+      background: linear-gradient(90deg, #e0d4ff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .subtitle {
-      text-align: center;
-      font-size: 0.78rem;
-      opacity: 0.85;
-      margin-bottom: 4px;
-    }
-    .artist {
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.72rem;
-      color: #c9a0ff;
-      margin-bottom: 16px;
-      letter-spacing: 1.5px;
-    }
-    .shield {
-      position: relative;
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 16px;
-    }
+    .subtitle { text-align: center; font-size: 0.76rem; opacity: 0.85; margin-bottom: 4px; }
+    .artist { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: #c9a0ff; margin-bottom: 14px; letter-spacing: 1.5px; }
+    .shield { position: relative; width: 150px; height: 150px; margin: 0 auto 14px; }
     .core {
-      position: absolute;
-      inset: 30px;
-      border-radius: 50%;
+      position: absolute; inset: 28px; border-radius: 50%;
       background: radial-gradient(circle, #7c3aed 0%, #4c1d95 55%, transparent 70%);
-      box-shadow: 0 0 45px #7c3aed;
-      transition: all 0.7s ease;
+      box-shadow: 0 0 40px #7c3aed; transition: all 0.7s ease;
     }
     .pulse, .pulse2 {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 2px solid rgba(167,139,250,0.55);
+      position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(167,139,250,0.55);
       animation: pulse 2.5s ease-out infinite;
     }
     .pulse2 { animation-delay: 1.25s; }
-    @keyframes pulse {
-      0% { transform: scale(0.5); opacity: 1; }
-      100% { transform: scale(1.5); opacity: 0; }
-    }
+    @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
     .shield.active .core {
       background: radial-gradient(circle, #c084fc 0%, #7c3aed 45%, transparent 70%);
-      box-shadow: 0 0 90px #c084fc, 0 0 150px #7c3aed;
+      box-shadow: 0 0 90px #c084fc, 0 0 140px #7c3aed;
     }
     .status {
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-      color: #a78bfa;
-      transition: all 0.4s;
+      text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.75rem; letter-spacing: 2px;
+      margin-bottom: 10px; color: #a78bfa; transition: all 0.4s;
     }
-    .status.active {
-      color: var(--green);
-      text-shadow: 0 0 12px var(--green);
-    }
+    .status.active { color: var(--green); text-shadow: 0 0 12px var(--green); }
     #activateBtn {
-      display: block;
-      margin: 0 auto 8px;
-      background: linear-gradient(135deg, #7c3aed, #4c1d95);
-      border: none;
-      color: #fff;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 1.5px;
-      padding: 11px 24px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 0 22px rgba(124,58,237,0.5);
+      display: block; margin: 0 auto 8px; background: linear-gradient(135deg, #7c3aed, #4c1d95);
+      border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;
+      letter-spacing: 1.5px; padding: 10px 22px; border-radius: 50px; cursor: pointer;
+      transition: all 0.3s; box-shadow: 0 0 20px rgba(124,58,237,0.5);
     }
-    #activateBtn:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 35px rgba(167,139,250,0.8);
-    }
+    #activateBtn:hover { transform: scale(1.04); box-shadow: 0 0 32px rgba(167,139,250,0.8); }
     .seal-indicator {
-      text-align: center;
-      font-size: 0.68rem;
-      font-family: 'Orbitron', sans-serif;
-      color: #a78bfa;
-      margin-bottom: 10px;
-      min-height: 16px;
+      text-align: center; font-size: 0.65rem; font-family: 'Orbitron', sans-serif;
+      color: #a78bfa; margin-bottom: 8px; min-height: 16px;
     }
-    .seal-indicator.locked {
-      color: var(--green);
-      text-shadow: 0 0 8px var(--green);
-    }
+    .seal-indicator.locked { color: var(--green); text-shadow: 0 0 8px var(--green); }
     .decree {
-      margin-top: 14px;
-      font-size: 0.76rem;
-      line-height: 1.6;
-      text-align: center;
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: all 0.9s ease;
+      margin-top: 12px; font-size: 0.74rem; line-height: 1.55; text-align: center;
+      opacity: 0; max-height: 0; overflow: hidden; transition: all 0.9s ease;
     }
-    .decree.visible {
-      opacity: 1;
-      max-height: 480px;
-    }
-    .decree .amen {
-      margin-top: 10px;
-      font-weight: 700;
-      color: #c9a0ff;
-      letter-spacing: 1.5px;
-    }
+    .decree.visible { opacity: 1; max-height: 480px; }
+    .decree .amen { margin-top: 8px; font-weight: 700; color: #c9a0ff; letter-spacing: 1.5px; }
     .prayer {
-      margin-top: 14px;
-      font-size: 0.62rem;
-      line-height: 1.5;
-      opacity: 0.5;
-      text-align: center;
-      max-width: 460px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: 12px; font-size: 0.6rem; line-height: 1.45; opacity: 0.5;
+      text-align: center; max-width: 440px; margin-left: auto; margin-right: auto;
     }
     .telemetry-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.85rem;
-      color: #a7f3d0;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.82rem; color: #a7f3d0; margin-bottom: 10px; letter-spacing: 1px;
     }
-    .metrics {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; }
     .metric {
-      background: rgba(0,0,0,0.45);
-      border: 1px solid rgba(16,185,129,0.25);
-      border-radius: 9px;
-      padding: 8px;
+      background: rgba(0,0,0,0.45); border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 8px; padding: 7px;
     }
-    .metric label {
-      display: block;
-      font-size: 0.58rem;
-      opacity: 0.6;
-      margin-bottom: 2px;
-    }
-    .metric value {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.88rem;
-      color: #6ee7b7;
-    }
+    .metric label { display: block; font-size: 0.56rem; opacity: 0.6; margin-bottom: 2px; }
+    .metric value { font-family: 'Orbitron', sans-serif; font-size: 0.84rem; color: #6ee7b7; }
     .log-box {
-      background: #000;
-      border: 1px solid rgba(16,185,129,0.3);
-      border-radius: 9px;
-      height: 140px;
-      overflow-y: auto;
-      padding: 8px;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.62rem;
-      color: #6ee7b7;
+      background: #000; border: 1px solid rgba(16,185,129,0.3); border-radius: 8px;
+      height: 130px; overflow-y: auto; padding: 7px; font-family: 'Orbitron', monospace;
+      font-size: 0.6rem; color: #6ee7b7;
     }
-    .log-box div {
-      margin-bottom: 3px;
-      border-bottom: 1px solid rgba(16,185,129,0.12);
-      padding-bottom: 2px;
-    }
+    .log-box div { margin-bottom: 2px; border-bottom: 1px solid rgba(16,185,129,0.12); padding-bottom: 2px; }
     .footer-seal {
-      position: relative;
-      z-index: 10;
-      margin-top: 24px;
-      text-align: center;
-      font-size: 0.62rem;
-      opacity: 0.55;
-      letter-spacing: 1px;
+      position: relative; z-index: 10; margin-top: 20px; text-align: center;
+      font-size: 0.6rem; opacity: 0.55; letter-spacing: 1px;
     }
     .offline-badge {
-      position: fixed;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0,0,0,0.75);
-      border: 1px solid rgba(167,139,250,0.4);
-      color: #c9a0ff;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.62rem;
-      padding: 5px 11px;
-      border-radius: 20px;
-      z-index: 50;
-      display: none;
+      position: fixed; bottom: 60px; right: 12px; background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(167,139,250,0.4); color: #c9a0ff; font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem; padding: 5px 10px; border-radius: 20px; z-index: 50; display: none;
     }
-    .freq-display {
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.7rem;
-      color: #a78bfa;
-      margin-top: 8px;
+    .freq-display { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.68rem; color: #a78bfa; margin-top: 6px; }
+    /* Audio Bar */
+    .audio-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,0,30,0.93);
+      border-top: 1px solid rgba(167,139,250,0.3); padding: 9px 14px; z-index: 100;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.68rem; color: #c9a0ff;
+    }
+    .audio-bar button {
+      background: linear-gradient(135deg, #7c3aed, #4c1d95); border: none; color: #fff;
+      font-family: 'Orbitron', sans-serif; font-size: 0.65rem; padding: 6px 14px;
+      border-radius: 20px; cursor: pointer;
     }
   </style>
 </head>
@@ -333,7 +147,11 @@
     <div class="header-seal">
       <h1>OMNI-MASAWI CELESTIAL MATRIX</h1>
       <p>PROTECTION SYSTEM • HRH TARRY KUPAKWASHE MASAWI • MATRIX 77-99-33 / 777-999-333</p>
-      <a class="nav-link" href="./dashboard.html">OPEN MATRIX DASHBOARD (15 ENGINES)</a>
+    </div>
+
+    <div class="nav">
+      <a href="./">Celestial Shield</a>
+      <a href="./dashboard.html">Matrix Dashboard</a>
     </div>
 
     <div class="matrix-bar">
@@ -364,7 +182,7 @@
           <p><strong>Matrix 77-99-33 • 777-999-333 • 77-99-34 LOCKED</strong></p>
           <p>Protection active for <strong>HRH Tarry Kupakwashe Masawi</strong></p>
           <p>and the entire Masawi Bloodline</p>
-          <p style="margin-top:10px">Any attack — spiritual, physical, digital, dimensional, energetic or temporal —</p>
+          <p style="margin-top:8px">Any attack — spiritual, physical, digital, dimensional, energetic or temporal —</p>
           <p>is returned to its source and dissolved under Mudzimu Unoyera.</p>
           <p class="amen">Mwari ndi Mwari</p>
         </div>
@@ -383,28 +201,15 @@
       <div class="telemetry-card">
         <h3>MATRIX TELEMETRY • LIVE</h3>
         <div class="metrics">
-          <div class="metric">
-            <label>HARMONIC</label>
-            <value id="metric-harmonic">0.000</value>
-          </div>
-          <div class="metric">
-            <label>ITERATIONS</label>
-            <value id="metric-iterations">0</value>
-          </div>
-          <div class="metric">
-            <label>NODE DENSITY</label>
-            <value id="metric-nodes">0</value>
-          </div>
-          <div class="metric">
-            <label>STATUS</label>
-            <value id="metric-status" style="color:#4ade80">ACTIVE</value>
-          </div>
+          <div class="metric"><label>HARMONIC</label><value id="metric-harmonic">0.000</value></div>
+          <div class="metric"><label>ITERATIONS</label><value id="metric-iterations">0</value></div>
+          <div class="metric"><label>NODE DENSITY</label><value id="metric-nodes">0</value></div>
+          <div class="metric"><label>STATUS</label><value id="metric-status" style="color:#4ade80">ACTIVE</value></div>
         </div>
-
         <div class="log-box" id="log-box">
           <div>[SYSTEM] Omni-Masawi Matrix initializing…</div>
           <div>[SYSTEM] Dedicated to HRH Tarry Kupakwashe Masawi</div>
-          <div>[SYSTEM] Phase 4 — High-density node field online</div>
+          <div>[SYSTEM] Phase 5 complete — Full navigation + sacred audio</div>
         </div>
       </div>
     </div>
@@ -416,34 +221,33 @@
 
   <div class="offline-badge" id="offlineBadge">OFFLINE MODE • SEAL RETAINED</div>
 
+  <div class="audio-bar">
+    <span>SACRED SOUND • HRH TARRY KUPAKWASHE MASAWI</span>
+    <button id="audioToggle">PLAY / PAUSE</button>
+    <audio id="sacredAudio" loop preload="auto">
+      <source src="./mudzimu-unoyera.wav" type="audio/wav">
+    </audio>
+  </div>
+
   <script>
-    // ===== Phase 4: High-Density Node Field + Frequency Morphing =====
+    // Phase 4 Node Field
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     const NAME = 'HRH TARRY KUPAKWASHE MASAWI';
     const particles = [];
-    const PARTICLE_COUNT = 900; // high visual density
+    const PARTICLE_COUNT = 900;
     const freqs = [432, 528, 639, 741, 852, 963, 777, 999, 333];
-    let freqIndex = 0;
-    let frame = 0;
+    let freqIndex = 0, frame = 0;
 
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        size: Math.random() * 1.8 + 0.4,
-        hue: Math.random() > 0.7 ? 280 : 160,
-        life: Math.random()
+        x: Math.random() * width, y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.55, vy: (Math.random() - 0.5) * 0.55,
+        size: Math.random() * 1.7 + 0.4, hue: Math.random() > 0.7 ? 280 : 160, life: Math.random()
       });
     }
 
@@ -451,55 +255,42 @@
       frame++;
       ctx.fillStyle = 'rgba(0, 0, 5, 0.18)';
       ctx.fillRect(0, 0, width, height);
-
-      // subtle name weaving
       if (frame % 40 === 0) {
         ctx.font = '10px Orbitron, monospace';
         ctx.fillStyle = 'rgba(167, 139, 250, 0.08)';
         ctx.fillText(NAME, Math.random() * width, Math.random() * height);
       }
-
       for (let p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life += 0.005;
-
+        p.x += p.vx; p.y += p.vy; p.life += 0.005;
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
-
         const pulse = 0.5 + 0.5 * Math.sin(p.life * 3 + frame * 0.02);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * pulse, 0, Math.PI * 2);
         ctx.fillStyle = `hsla(${p.hue + frame * 0.05}, 80%, 70%, ${0.35 + pulse * 0.4})`;
         ctx.fill();
       }
-
-      // occasional stronger name burst
       if (frame % 120 === 0) {
         ctx.font = 'bold 13px Orbitron, monospace';
         ctx.fillStyle = 'rgba(192, 132, 252, 0.15)';
         ctx.textAlign = 'center';
         ctx.fillText(NAME, width / 2, height / 2 + (Math.random() - 0.5) * 200);
       }
-
       requestAnimationFrame(draw);
     }
     draw();
 
-    // Frequency morphing display
     setInterval(() => {
       freqIndex = (freqIndex + 1) % freqs.length;
       document.getElementById('freqDisplay').textContent = `FREQUENCY: ${freqs[freqIndex]} Hz`;
     }, 4000);
 
-    // ===== Service Worker =====
+    // Service Worker
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js')
-        .then(() => log('[PHASE 2] Service Worker registered'))
-        .catch(() => {});
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
 
-    // ===== Persistent Seal =====
+    // Persistent Seal
     const SEAL_KEY = 'masawi_celestial_seal_v1';
     const btn = document.getElementById('activateBtn');
     const shield = document.getElementById('shield');
@@ -510,55 +301,59 @@
 
     function updateSealUI(isActive) {
       if (isActive) {
-        shield.classList.add('active');
-        status.classList.add('active');
+        shield.classList.add('active'); status.classList.add('active');
         status.textContent = 'SHIELD STATUS: ACTIVE • 777-999-333 LOCKED';
-        decree.classList.add('visible');
-        btn.textContent = 'SHIELD ACTIVE — SEALED';
+        decree.classList.add('visible'); btn.textContent = 'SHIELD ACTIVE — SEALED';
         sealIndicator.textContent = 'DEVICE SEAL: LOCKED • PERSISTENT';
         sealIndicator.classList.add('locked');
       } else {
-        shield.classList.remove('active');
-        status.classList.remove('active');
+        shield.classList.remove('active'); status.classList.remove('active');
         status.textContent = 'SHIELD STATUS: DORMANT';
-        decree.classList.remove('visible');
-        btn.textContent = 'ACTIVATE CELESTIAL SHIELD';
+        decree.classList.remove('visible'); btn.textContent = 'ACTIVATE CELESTIAL SHIELD';
         sealIndicator.textContent = 'DEVICE SEAL: NOT LOCKED';
         sealIndicator.classList.remove('locked');
       }
     }
 
     if (localStorage.getItem(SEAL_KEY) === 'locked') {
-      active = true;
-      updateSealUI(true);
+      active = true; updateSealUI(true);
       log('[SEAL] Persistent device seal restored for HRH Tarry Kupakwashe Masawi');
     }
 
     btn.addEventListener('click', () => {
       active = !active;
       if (active) {
-        localStorage.setItem(SEAL_KEY, 'locked');
-        updateSealUI(true);
+        localStorage.setItem(SEAL_KEY, 'locked'); updateSealUI(true);
         log('[SHIELD] Celestial dome activated + device seal locked');
       } else {
-        localStorage.removeItem(SEAL_KEY);
-        updateSealUI(false);
+        localStorage.removeItem(SEAL_KEY); updateSealUI(false);
         log('[SHIELD] Dome set to dormant');
       }
     });
 
     function updateOnlineStatus() {
-      const badge = document.getElementById('offlineBadge');
-      badge.style.display = navigator.onLine ? 'none' : 'block';
+      document.getElementById('offlineBadge').style.display = navigator.onLine ? 'none' : 'block';
     }
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
     updateOnlineStatus();
 
-    // Telemetry
-    let iterations = 0;
-    let nodes = 0;
+    // Audio
+    const audio = document.getElementById('sacredAudio');
+    const audioToggle = document.getElementById('audioToggle');
+    audioToggle.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().catch(()=>{});
+        audioToggle.textContent = 'PAUSE';
+        log('[AUDIO] Sacred sound playing — name continuously present');
+      } else {
+        audio.pause();
+        audioToggle.textContent = 'PLAY';
+      }
+    });
 
+    // Telemetry
+    let iterations = 0, nodes = 0;
     function log(msg) {
       const box = document.getElementById('log-box');
       if (!box) return;
@@ -566,26 +361,19 @@
       const line = document.createElement('div');
       line.textContent = `[${time}] ${msg}`;
       box.prepend(line);
-      if (box.children.length > 30) box.removeChild(box.lastChild);
+      if (box.children.length > 28) box.removeChild(box.lastChild);
     }
-
     function updateTelemetry() {
       iterations++;
       nodes += Math.floor(Math.random() * 1800) + 700;
       const harmonic = (Math.sin(Date.now() * 0.001) * 777999333).toFixed(2);
-
       document.getElementById('metric-harmonic').textContent = harmonic;
       document.getElementById('metric-iterations').textContent = iterations.toLocaleString();
       document.getElementById('metric-nodes').textContent = nodes.toLocaleString();
-
-      if (iterations % 8 === 0) {
-        log(`[MATRIX] Harmonic ${harmonic} | Nodes ${nodes.toLocaleString()} | ${NAME} sealed`);
-      }
+      if (iterations % 8 === 0) log(`[MATRIX] Harmonic ${harmonic} | Nodes ${nodes.toLocaleString()} | ${NAME} sealed`);
     }
-
     setInterval(updateTelemetry, 800);
-    log('[SYSTEM] Phase 4 online — High-density node field + frequency morphing');
-    log('[SYSTEM] 15 backend engines registered');
+    log('[SYSTEM] Phase 5 complete — Full navigation + sacred audio ready');
     log('[SYSTEM] Protection field dedicated to HRH Tarry Kupakwashe Masawi');
   </script>
 </body>
