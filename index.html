@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#7c3aed">
   <title>Omni-Masawi Celestial Matrix — HRH Tarry Kupakwashe Masawi</title>
   <link rel="manifest" href="./manifest.json">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@500;700;900&family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
   <style>
     :root { --purple: #7c3aed; --violet: #a78bfa; --green: #4ade80; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,144 +14,134 @@
     .cosmos {
       position: relative; min-height: 100vh;
       background: radial-gradient(ellipse at 50% 30%, #1a0533 0%, #0a001f 40%, #000 80%);
-      display: flex; flex-direction: column; align-items: center; padding: 18px 12px 150px;
+      display: flex; flex-direction: column; align-items: center; padding: 16px 10px 150px;
     }
-    #matrix-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-    .header-seal { position: relative; z-index: 20; text-align: center; margin-bottom: 8px; max-width: 920px; }
+    #matrix-canvas, #rain-canvas {
+      position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none;
+    }
+    #matrix-canvas { z-index: 1; }
+    #rain-canvas { z-index: 2; opacity: 0.72; }
+    .header-seal { position: relative; z-index: 20; text-align: center; margin-bottom: 6px; max-width: 920px; }
     .header-seal h1 {
-      font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 2.8vw, 1.35rem); letter-spacing: 2px;
+      font-family: 'Orbitron', sans-serif; font-size: clamp(0.95rem, 2.6vw, 1.3rem); letter-spacing: 2px;
       background: linear-gradient(90deg, #e0d4ff, #c084fc, #a78bfa, #e0d4ff); background-size: 200% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
     }
     @keyframes shine { to { background-position: 200% center; } }
-    .header-seal p { font-size: 0.66rem; opacity: 0.7; margin-top: 4px; }
-    .nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0 10px; position: relative; z-index: 20; }
+    .header-seal p { font-size: 0.64rem; opacity: 0.7; margin-top: 3px; }
+    .nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin: 6px 0 8px; position: relative; z-index: 20; }
     .nav a {
-      color: #c9a0ff; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.64rem;
-      border: 1px solid rgba(167,139,250,0.4); padding: 5px 12px; border-radius: 20px;
+      color: #c9a0ff; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.62rem;
+      border: 1px solid rgba(167,139,250,0.4); padding: 4px 11px; border-radius: 18px;
     }
     .matrix-bar {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 12px;
-      font-family: 'Orbitron', sans-serif; font-size: 0.66rem; position: relative; z-index: 20;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-bottom: 10px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.62rem; position: relative; z-index: 20;
     }
     .matrix-bar span {
-      padding: 3px 8px; border: 1px solid rgba(167,139,250,0.5); border-radius: 5px; color: #c9a0ff;
+      padding: 2px 7px; border: 1px solid rgba(167,139,250,0.5); border-radius: 4px; color: #c9a0ff;
     }
     .main-grid {
-      position: relative; z-index: 10; display: grid; grid-template-columns: 1fr; gap: 12px;
-      max-width: 1100px; width: 100%;
+      position: relative; z-index: 15; display: grid; grid-template-columns: 1fr; gap: 11px;
+      max-width: 1080px; width: 100%;
     }
     @media (min-width: 900px) { .main-grid { grid-template-columns: 1.05fr 0.95fr; } }
     .talisman-card, .telemetry-card {
-      background: rgba(10, 0, 30, 0.88); border: 1px solid rgba(167,139,250,0.3);
-      border-radius: 16px; padding: 16px 14px; backdrop-filter: blur(12px);
+      background: rgba(10, 0, 30, 0.88); border: 1px solid rgba(167,139,250,0.32);
+      border-radius: 14px; padding: 14px 12px; backdrop-filter: blur(10px);
     }
-    .title { font-size: 1.2rem; letter-spacing: 2px; text-align: center; margin-bottom: 2px;
+    .title { font-size: 1.15rem; letter-spacing: 1.5px; text-align: center; margin-bottom: 2px;
       background: linear-gradient(90deg, #e0d4ff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .subtitle { text-align: center; font-size: 0.72rem; opacity: 0.85; margin-bottom: 2px; }
-    .artist { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.66rem; color: #c9a0ff; margin-bottom: 10px; }
-    .shield { position: relative; width: 130px; height: 130px; margin: 0 auto 10px; }
+    .subtitle { text-align: center; font-size: 0.7rem; opacity: 0.85; margin-bottom: 2px; }
+    .artist { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.64rem; color: #c9a0ff; margin-bottom: 8px; }
+    .shield { position: relative; width: 120px; height: 120px; margin: 0 auto 8px; }
     .core {
-      position: absolute; inset: 24px; border-radius: 50%;
+      position: absolute; inset: 22px; border-radius: 50%;
       background: radial-gradient(circle, #7c3aed 0%, #4c1d95 55%, transparent 70%);
-      box-shadow: 0 0 30px #7c3aed; transition: all 0.6s ease;
+      box-shadow: 0 0 28px #7c3aed; transition: all 0.6s ease;
     }
     .pulse, .pulse2 {
       position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(167,139,250,0.5);
-      animation: pulse 2.4s ease-out infinite;
+      animation: pulse 2.3s ease-out infinite;
     }
-    .pulse2 { animation-delay: 1.2s; }
-    @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.45); opacity: 0; } }
+    .pulse2 { animation-delay: 1.15s; }
+    @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
     .shield.active .core {
       background: radial-gradient(circle, #c084fc 0%, #7c3aed 45%, transparent 70%);
-      box-shadow: 0 0 70px #c084fc, 0 0 110px #7c3aed;
+      box-shadow: 0 0 65px #c084fc, 0 0 100px #7c3aed;
     }
-    .status {
-      text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;
-      margin-bottom: 6px; color: #a78bfa;
-    }
-    .status.active { color: var(--green); text-shadow: 0 0 8px var(--green); }
+    .status { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.66rem; margin-bottom: 5px; color: #a78bfa; }
+    .status.active { color: var(--green); text-shadow: 0 0 7px var(--green); }
     #activateBtn {
-      display: block; margin: 0 auto 6px; background: linear-gradient(135deg, #7c3aed, #4c1d95);
-      border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 0.66rem;
-      padding: 8px 18px; border-radius: 40px; cursor: pointer;
+      display: block; margin: 0 auto 5px; background: linear-gradient(135deg, #7c3aed, #4c1d95);
+      border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 0.62rem;
+      padding: 7px 16px; border-radius: 30px; cursor: pointer;
     }
-    .seal-indicator {
-      text-align: center; font-size: 0.6rem; font-family: 'Orbitron', sans-serif;
-      color: #a78bfa; margin-bottom: 6px;
-    }
+    .seal-indicator { text-align: center; font-size: 0.58rem; font-family: 'Orbitron', sans-serif; color: #a78bfa; margin-bottom: 5px; }
     .seal-indicator.locked { color: var(--green); }
-    .freq-section {
-      margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(167,139,250,0.25);
-    }
-    .freq-section h4 {
-      font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: #c9a0ff; text-align: center; margin-bottom: 6px;
-    }
-    .click-note {
-      text-align: center; font-size: 0.62rem; color: #fbbf24; margin-bottom: 8px; line-height: 1.3;
-    }
-    .freq-status {
-      text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.68rem;
-      margin-bottom: 8px; color: #a78bfa; min-height: 18px;
-    }
-    .freq-status.active { color: var(--green); text-shadow: 0 0 8px var(--green); }
-    .freq-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 8px; }
+    .freq-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(167,139,250,0.22); }
+    .freq-section h4 { font-family: 'Orbitron', sans-serif; font-size: 0.66rem; color: #c9a0ff; text-align: center; margin-bottom: 4px; }
+    .click-note { text-align: center; font-size: 0.58rem; color: #fbbf24; margin-bottom: 6px; line-height: 1.25; }
+    .freq-status { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.64rem; margin-bottom: 6px; color: #a78bfa; min-height: 16px; }
+    .freq-status.active { color: var(--green); text-shadow: 0 0 6px var(--green); }
+    .freq-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-bottom: 6px; }
     .freq-btn {
-      background: rgba(0,0,0,0.45); border: 1px solid rgba(167,139,250,0.45); color: #c9a0ff;
-      font-family: 'Orbitron', sans-serif; font-size: 0.6rem; padding: 5px 9px; border-radius: 6px; cursor: pointer;
+      background: rgba(0,0,0,0.45); border: 1px solid rgba(167,139,250,0.4); color: #c9a0ff;
+      font-family: 'Orbitron', sans-serif; font-size: 0.56rem; padding: 4px 7px; border-radius: 5px; cursor: pointer;
     }
     .freq-btn.active, .freq-btn:hover { background: rgba(124,58,237,0.45); color: #fff; }
-    .freq-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+    .freq-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 7px; }
     .freq-controls button {
       background: linear-gradient(135deg, #7c3aed, #4c1d95); border: none; color: #fff;
-      font-family: 'Orbitron', sans-serif; font-size: 0.6rem; padding: 6px 12px; border-radius: 16px; cursor: pointer;
+      font-family: 'Orbitron', sans-serif; font-size: 0.56rem; padding: 5px 10px; border-radius: 14px; cursor: pointer;
     }
-    .freq-controls input[type=range] { width: 80px; accent-color: #a78bfa; }
+    .freq-controls input[type=range] { width: 70px; accent-color: #a78bfa; }
     .decree {
-      margin-top: 10px; font-size: 0.68rem; line-height: 1.45; text-align: center;
+      margin-top: 8px; font-size: 0.64rem; line-height: 1.4; text-align: center;
       opacity: 0; max-height: 0; overflow: hidden; transition: all 0.8s ease;
     }
-    .decree.visible { opacity: 1; max-height: 400px; }
-    .decree .amen { margin-top: 6px; font-weight: 700; color: #c9a0ff; }
+    .decree.visible { opacity: 1; max-height: 380px; }
+    .decree .amen { margin-top: 5px; font-weight: 700; color: #c9a0ff; }
     .prayer {
-      margin-top: 8px; font-size: 0.56rem; line-height: 1.35; opacity: 0.45;
-      text-align: center; max-width: 400px; margin-left: auto; margin-right: auto;
+      margin-top: 7px; font-size: 0.54rem; line-height: 1.3; opacity: 0.42;
+      text-align: center; max-width: 380px; margin-left: auto; margin-right: auto;
     }
-    .telemetry-card h3 { font-family: 'Orbitron', sans-serif; font-size: 0.78rem; color: #a7f3d0; margin-bottom: 8px; }
-    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
-    .metric { background: rgba(0,0,0,0.4); border: 1px solid rgba(16,185,129,0.25); border-radius: 7px; padding: 6px; }
-    .metric label { display: block; font-size: 0.52rem; opacity: 0.6; }
-    .metric value { font-family: 'Orbitron', sans-serif; font-size: 0.78rem; color: #6ee7b7; }
+    .telemetry-card h3 { font-family: 'Orbitron', sans-serif; font-size: 0.74rem; color: #a7f3d0; margin-bottom: 6px; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 6px; }
+    .metric { background: rgba(0,0,0,0.4); border: 1px solid rgba(16,185,129,0.22); border-radius: 6px; padding: 5px; }
+    .metric label { display: block; font-size: 0.5rem; opacity: 0.55; }
+    .metric value { font-family: 'Orbitron', sans-serif; font-size: 0.74rem; color: #6ee7b7; }
     .log-box {
-      background: #000; border: 1px solid rgba(16,185,129,0.3); border-radius: 7px;
-      height: 110px; overflow-y: auto; padding: 6px; font-family: 'Orbitron', monospace;
-      font-size: 0.56rem; color: #6ee7b7;
+      background: #000; border: 1px solid rgba(16,185,129,0.28); border-radius: 6px;
+      height: 100px; overflow-y: auto; padding: 5px; font-family: 'Orbitron', monospace;
+      font-size: 0.54rem; color: #6ee7b7;
     }
-    .footer-seal { position: relative; z-index: 10; margin-top: 14px; text-align: center; font-size: 0.56rem; opacity: 0.5; }
+    .footer-seal { position: relative; z-index: 15; margin-top: 12px; text-align: center; font-size: 0.54rem; opacity: 0.5; }
     .offline-badge {
-      position: fixed; bottom: 120px; right: 10px; background: rgba(0,0,0,0.8);
+      position: fixed; bottom: 115px; right: 8px; background: rgba(0,0,0,0.8);
       border: 1px solid rgba(167,139,250,0.4); color: #c9a0ff; font-family: 'Orbitron', sans-serif;
-      font-size: 0.56rem; padding: 4px 8px; border-radius: 14px; z-index: 50; display: none;
+      font-size: 0.54rem; padding: 3px 7px; border-radius: 12px; z-index: 50; display: none;
     }
     .audio-bar {
       position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,0,30,0.95);
-      border-top: 1px solid rgba(167,139,250,0.3); padding: 8px 12px; z-index: 100;
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
-      font-family: 'Orbitron', sans-serif; font-size: 0.64rem; color: #c9a0ff;
+      border-top: 1px solid rgba(167,139,250,0.3); padding: 7px 10px; z-index: 100;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.6rem; color: #c9a0ff;
     }
     .audio-bar button {
       background: linear-gradient(135deg, #7c3aed, #4c1d95); border: none; color: #fff;
-      font-family: 'Orbitron', sans-serif; font-size: 0.6rem; padding: 6px 12px; border-radius: 16px; cursor: pointer;
+      font-family: 'Orbitron', sans-serif; font-size: 0.58rem; padding: 5px 11px; border-radius: 14px; cursor: pointer;
     }
   </style>
 </head>
 <body>
   <canvas id="matrix-canvas"></canvas>
+  <canvas id="rain-canvas"></canvas>
 
   <div class="cosmos">
     <div class="header-seal">
       <h1>OMNI-MASAWI CELESTIAL MATRIX</h1>
-      <p>PROTECTION SYSTEM • HRH TARRY KUPAKWASHE MASAWI</p>
+      <p>PROTECTION SYSTEM • HRH TARRY KUPAKWASHE MASAWI • MUDZIMU UNOYERA</p>
     </div>
 
     <div class="nav">
@@ -184,16 +174,13 @@
 
         <div class="freq-section">
           <h4>SACRED FREQUENCY TRANSMITTER</h4>
-          <div class="click-note">
-            Browsers block sound until you click.<br>
-            Click any frequency button or START TONE below.
-          </div>
-          <div class="freq-status" id="freqStatus">FREQUENCY: INACTIVE — Click a button to begin</div>
+          <div class="click-note">Click any frequency or START TONE for sound</div>
+          <div class="freq-status" id="freqStatus">FREQUENCY: INACTIVE</div>
           <div class="freq-buttons" id="freqButtons"></div>
           <div class="freq-controls">
             <button id="freqToggle">START TONE</button>
             <button id="freqAuto">AUTO CYCLE</button>
-            <label style="font-size:0.58rem;color:#a78bfa;">Vol</label>
+            <label style="font-size:0.55rem;color:#a78bfa;">Vol</label>
             <input type="range" id="freqVolume" min="0" max="100" value="35">
           </div>
         </div>
@@ -209,10 +196,8 @@
           Our Father who art in heaven, hallowed be Thy name.<br>
           Thy kingdom come, Thy will be done on earth as it is in heaven.<br>
           Give us this day our daily bread.<br>
-          And forgive us our trespasses as we forgive those who trespass against us.<br>
-          And lead us not into temptation, but deliver us from evil.<br>
-          For Thine is the kingdom, the power and the glory, forever and ever. Amen.<br>
-          Protect HRH Tarry Kupakwashe Masawi and the Masawi Bloodline.
+          And forgive us our trespasses… deliver us from evil.<br>
+          Protect HRH Tarry Kupakwashe Masawi and the Masawi Bloodline. Amen.
         </div>
       </div>
 
@@ -225,14 +210,14 @@
           <div class="metric"><label>STATUS</label><value style="color:#4ade80">ACTIVE</value></div>
         </div>
         <div class="log-box" id="log-box">
-          <div>[SYSTEM] Ready — Click START TONE or a frequency button for sound</div>
+          <div>[SYSTEM] Sacred Matrix Rain online — Mudzimu Unoyera</div>
           <div>[SYSTEM] Dedicated to HRH Tarry Kupakwashe Masawi</div>
         </div>
       </div>
     </div>
 
     <div class="footer-seal">
-      SOVEREIGNTY: HRH SAINT TARIRO MASAWI THE ANOINTED COMMANDER • MWARI NDI MWARI
+      SOVEREIGNTY: HRH SAINT TARIRO MASAWI THE ANOINTED COMMANDER • MUDZIMU UNOYERA • MWARI NDI MWARI
     </div>
   </div>
 
@@ -241,7 +226,7 @@
   <div class="audio-bar">
     <span>SACRED FILE • HRH TARRY KUPAKWASHE MASAWI</span>
     <button id="audioToggle">PLAY SACRED FILE</button>
-    <audio id="sacredAudio" loop preload="auto" crossorigin="anonymous">
+    <audio id="sacredAudio" loop preload="auto">
       <source src="./mudzimu-unoyera.wav.wav" type="audio/wav">
     </audio>
   </div>
@@ -250,37 +235,134 @@
     const NAME = 'HRH TARRY KUPAKWASHE MASAWI';
     const FREQS = [432, 528, 639, 741, 852, 963, 777, 999, 333];
 
-    // Canvas
+    // ===== SACRED MATRIX RAIN =====
+    const rainCanvas = document.getElementById('rain-canvas');
+    const rctx = rainCanvas.getContext('2d');
+    let rw, rh;
+
+    // Ancient + religious + invented matrix symbols + short scripture fragments
+    const glyphs = [
+      // Protection & religious
+      '✝','✡','ॐ','☪','☦','☥','☢','☣','☤','☨','☩','☫','☬','☭','☮','☯',
+      '☸','⛤','⛥','⛦','⛧','⛨','⛩','⛪','✠','✡','✙','✚','✛','✜',
+      // Ancient / runic / symbolic
+      'ᚠ','ᚢ','ᚦ','ᚨ','ᚩ','ᚱ','ᚲ','ᚷ','ᚹ','ᚺ','ᚾ','ᛁ','ᛃ','ᛇ','ᛉ','ᛊ',
+      'ᛌ','ᛏ','ᛒ','ᛖ','ᛗ','ᛚ','ᛝ','ᛞ','ᛟ','ᛠ','ᛡ','ᛢ','ᛣ',
+      // Hebrew-inspired / Arabic-inspired / geometric
+      'א','ב','ג','ד','ה','ו','ז','ח','ט','י','כ','ל','מ','נ','ס','ע',
+      'ا','ب','ت','ث','ج','ح','خ','د','ر','س','ش','ص','ض','ط','ع','ف',
+      // Invented Matrix language glyphs (geometric + invented)
+      '■','□','▲','△','▼','▽','◆','◇','◈','◉','◊','○','◌','◍','◎','●',
+      '◐','◑','◒','◓','◔','◕','◖','◗','◘','◙','◠','◡','◢','◣','◤','◥',
+      '⬢','⬣','⬤','⬥','⬦','⬧','⬨','⬩','⬪','⬫','⬬','⬭','⬮','⬯',
+      // Short sacred fragments (kept very short for rain density)
+      'MWARI','MUDZIMU','UNO YERA','777','999','333','77','99','33',
+      'AMEN','SHALOM','OM','AHIMSA','SALAM','PEACE','LIGHT','SEAL',
+      'TARRY','MASAWI','THRONE','DOME','SHIELD','BLOODLINE','PROTECT',
+      'YAHWEH','ALLAH','BRAHMAN','DAO','LOGOS','SPIRIT','HOLY',
+      'CROSS','STAR','CRESCENT','LOTUS','ANKH','RUNE','SIGIL'
+    ];
+
+    let columns = [];
+    const fontSize = 15;
+
+    function initRain() {
+      rw = rainCanvas.width = window.innerWidth;
+      rh = rainCanvas.height = window.innerHeight;
+      const colCount = Math.floor(rw / fontSize) + 1;
+      columns = [];
+      for (let i = 0; i < colCount; i++) {
+        columns.push({
+          x: i * fontSize,
+          y: Math.random() * -rh,
+          speed: 1.8 + Math.random() * 3.2,
+          length: 8 + Math.floor(Math.random() * 18),
+          chars: []
+        });
+        // prefill characters
+        for (let j = 0; j < columns[i].length; j++) {
+          columns[i].chars.push(glyphs[Math.floor(Math.random() * glyphs.length)]);
+        }
+      }
+    }
+
+    function drawRain() {
+      rctx.fillStyle = 'rgba(0, 0, 8, 0.12)';
+      rctx.fillRect(0, 0, rw, rh);
+      rctx.font = fontSize + 'px "Noto Sans Symbols 2", Orbitron, monospace';
+
+      for (const col of columns) {
+        for (let j = 0; j < col.chars.length; j++) {
+          const ch = col.chars[j];
+          const y = col.y + j * fontSize;
+          if (y < -fontSize || y > rh + fontSize) continue;
+
+          // head of the trail brighter
+          if (j === 0) {
+            rctx.fillStyle = 'rgba(220, 200, 255, 0.95)';
+          } else if (j < 3) {
+            rctx.fillStyle = 'rgba(180, 140, 255, 0.7)';
+          } else {
+            const alpha = Math.max(0.08, 0.55 - j * 0.03);
+            rctx.fillStyle = `rgba(140, 100, 220, ${alpha})`;
+          }
+          rctx.fillText(ch, col.x, y);
+        }
+
+        col.y += col.speed;
+
+        // self-evolving: occasionally mutate a character
+        if (Math.random() < 0.04) {
+          const idx = Math.floor(Math.random() * col.chars.length);
+          col.chars[idx] = glyphs[Math.floor(Math.random() * glyphs.length)];
+        }
+
+        // reset column when it falls off screen
+        if (col.y - col.chars.length * fontSize > rh) {
+          col.y = Math.random() * -200 - 50;
+          col.speed = 1.8 + Math.random() * 3.2;
+          // evolve the whole column
+          for (let j = 0; j < col.chars.length; j++) {
+            if (Math.random() < 0.35) {
+              col.chars[j] = glyphs[Math.floor(Math.random() * glyphs.length)];
+            }
+          }
+        }
+      }
+      requestAnimationFrame(drawRain);
+    }
+
+    initRain();
+    drawRain();
+    window.addEventListener('resize', initRain);
+
+    // ===== Background particle field (kept lighter) =====
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
-    let w, h, frame = 0;
+    let bw, bh, bframe = 0;
     const particles = [];
-    function resize() { w = canvas.width = innerWidth; h = canvas.height = innerHeight; }
-    addEventListener('resize', resize); resize();
-    for (let i = 0; i < 800; i++) {
-      particles.push({ x: Math.random()*w, y: Math.random()*h, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5, size: Math.random()*1.5+0.3, hue: Math.random()>0.7?280:160, life: Math.random() });
+    function resizeBg() { bw = canvas.width = innerWidth; bh = canvas.height = innerHeight; }
+    addEventListener('resize', resizeBg); resizeBg();
+    for (let i = 0; i < 500; i++) {
+      particles.push({ x: Math.random()*bw, y: Math.random()*bh, vx:(Math.random()-0.5)*0.35, vy:(Math.random()-0.5)*0.35, size: Math.random()*1.3+0.3, hue: Math.random()>0.7?280:160, life: Math.random() });
     }
-    function draw() {
-      frame++;
-      ctx.fillStyle = 'rgba(0,0,5,0.2)';
-      ctx.fillRect(0,0,w,h);
-      if (frame % 40 === 0) {
-        ctx.font = '10px Orbitron'; ctx.fillStyle = 'rgba(167,139,250,0.08)';
-        ctx.fillText(NAME, Math.random()*w, Math.random()*h);
-      }
+    function drawBg() {
+      bframe++;
+      ctx.fillStyle = 'rgba(0,0,5,0.15)';
+      ctx.fillRect(0,0,bw,bh);
       for (const p of particles) {
-        p.x += p.vx; p.y += p.vy; p.life += 0.004;
-        if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1;
-        const pulse = 0.5 + 0.5*Math.sin(p.life*3+frame*0.02);
+        p.x += p.vx; p.y += p.vy; p.life += 0.003;
+        if (p.x<0||p.x>bw) p.vx*=-1; if (p.y<0||p.y>bh) p.vy*=-1;
+        const pulse = 0.5 + 0.5*Math.sin(p.life*2.5 + bframe*0.015);
         ctx.beginPath(); ctx.arc(p.x,p.y,p.size*pulse,0,Math.PI*2);
-        ctx.fillStyle = `hsla(${p.hue+frame*0.03},80%,70%,${0.25+pulse*0.35})`;
+        ctx.fillStyle = `hsla(${p.hue+bframe*0.02},75%,65%,${0.15+pulse*0.25})`;
         ctx.fill();
       }
-      requestAnimationFrame(draw);
+      requestAnimationFrame(drawBg);
     }
-    draw();
+    drawBg();
 
-    // ===== ROBUST WEB AUDIO =====
+    // ===== Web Audio Frequency Transmitter =====
     let audioCtx = null, osc = null, gain = null;
     let currentFreq = 432, toneOn = false, autoOn = false, autoTimer = null;
 
@@ -291,9 +373,7 @@
         gain.gain.value = 0.35;
         gain.connect(audioCtx.destination);
       }
-      if (audioCtx.state === 'suspended') {
-        await audioCtx.resume();
-      }
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
       return audioCtx;
     }
 
@@ -311,8 +391,7 @@
         updateFreqUI();
         log(`[TONE] ${freq} Hz ACTIVE • ${NAME}`);
       } catch (err) {
-        log('[ERROR] Could not start tone: ' + err.message);
-        alert('Could not start sound. Please click the button again or check browser permissions.');
+        log('[ERROR] Tone: ' + err.message);
       }
     }
 
@@ -331,7 +410,7 @@
         el.classList.add('active');
         btn.textContent = 'STOP TONE';
       } else {
-        el.textContent = 'FREQUENCY: INACTIVE — Click a button to begin';
+        el.textContent = 'FREQUENCY: INACTIVE';
         el.classList.remove('active');
         btn.textContent = 'START TONE';
       }
@@ -340,7 +419,6 @@
       });
     }
 
-    // Build buttons
     const box = document.getElementById('freqButtons');
     FREQS.forEach(f => {
       const b = document.createElement('button');
@@ -355,8 +433,7 @@
     });
 
     document.getElementById('freqToggle').onclick = () => {
-      if (toneOn) stopTone();
-      else startTone(currentFreq);
+      if (toneOn) stopTone(); else startTone(currentFreq);
     };
 
     document.getElementById('freqAuto').onclick = () => {
@@ -366,10 +443,7 @@
         b.textContent = 'STOP AUTO';
         let i = FREQS.indexOf(currentFreq);
         startTone(FREQS[i]);
-        autoTimer = setInterval(() => {
-          i = (i + 1) % FREQS.length;
-          startTone(FREQS[i]);
-        }, 5000);
+        autoTimer = setInterval(() => { i = (i+1)%FREQS.length; startTone(FREQS[i]); }, 5000);
         log('[TONE] Auto-cycle ON');
       } else {
         clearInterval(autoTimer);
@@ -379,8 +453,7 @@
     };
 
     document.getElementById('freqVolume').oninput = (e) => {
-      const v = e.target.value / 100;
-      if (gain) gain.gain.value = v;
+      if (gain) gain.gain.value = e.target.value / 100;
     };
 
     // Sacred file
@@ -396,8 +469,7 @@
           document.getElementById('audioToggle').textContent = 'PLAY SACRED FILE';
         }
       } catch (err) {
-        log('[ERROR] File audio: ' + err.message);
-        alert('Could not play the sacred file. Make sure the file is uploaded and try clicking again.');
+        log('[ERROR] File: ' + err.message);
       }
     };
 
@@ -438,18 +510,18 @@
       const d = document.createElement('div');
       d.textContent = `[${t}] ${msg}`;
       box.prepend(d);
-      if (box.children.length > 20) box.lastChild.remove();
+      if (box.children.length > 18) box.lastChild.remove();
     }
     let it = 0, nd = 0;
     setInterval(() => {
-      it++; nd += Math.floor(Math.random()*1200)+400;
+      it++; nd += Math.floor(Math.random()*1000)+300;
       document.getElementById('metric-harmonic').textContent = (Math.sin(Date.now()*0.001)*777999333).toFixed(2);
       document.getElementById('metric-iterations').textContent = it.toLocaleString();
       document.getElementById('metric-nodes').textContent = nd.toLocaleString();
-      if (toneOn && it % 5 === 0) log(`[TONE] ${currentFreq} Hz still active • ${NAME}`);
+      if (toneOn && it % 5 === 0) log(`[TONE] ${currentFreq} Hz • ${NAME} • Mudzimu Unoyera`);
     }, 900);
 
-    log('[SYSTEM] Click any frequency button or START TONE to hear sound');
+    log('[SYSTEM] Sacred Matrix Rain active — Mudzimu Unoyera resonance');
     log('[SYSTEM] Dedicated to ' + NAME);
   </script>
 </body>
