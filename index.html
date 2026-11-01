@@ -14,54 +14,54 @@
     .cosmos {
       position: relative; min-height: 100vh;
       background: radial-gradient(ellipse at 50% 30%, #1a0533 0%, #0a001f 40%, #000 80%);
-      display: flex; flex-direction: column; align-items: center; padding: 24px 14px 80px;
+      display: flex; flex-direction: column; align-items: center; padding: 20px 12px 140px;
     }
     #matrix-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-    .header-seal { position: relative; z-index: 20; text-align: center; margin-bottom: 12px; max-width: 920px; }
+    .header-seal { position: relative; z-index: 20; text-align: center; margin-bottom: 10px; max-width: 920px; }
     .header-seal h1 {
-      font-family: 'Orbitron', sans-serif; font-size: clamp(1.05rem, 3vw, 1.5rem); letter-spacing: 3px;
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 2.8vw, 1.4rem); letter-spacing: 2px;
       background: linear-gradient(90deg, #e0d4ff, #c084fc, #a78bfa, #e0d4ff); background-size: 200% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
     }
     @keyframes shine { to { background-position: 200% center; } }
-    .header-seal p { font-size: 0.7rem; opacity: 0.7; margin-top: 5px; letter-spacing: 1px; }
+    .header-seal p { font-size: 0.68rem; opacity: 0.7; margin-top: 4px; letter-spacing: 1px; }
     .nav {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 10px 0 14px; position: relative; z-index: 20;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0 12px; position: relative; z-index: 20;
     }
     .nav a {
-      color: #c9a0ff; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.68rem;
-      border: 1px solid rgba(167,139,250,0.4); padding: 6px 14px; border-radius: 20px; transition: all 0.3s;
+      color: #c9a0ff; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.65rem;
+      border: 1px solid rgba(167,139,250,0.4); padding: 5px 12px; border-radius: 20px; transition: all 0.3s;
     }
-    .nav a:hover { background: rgba(124,58,237,0.25); box-shadow: 0 0 12px rgba(167,139,250,0.35); }
+    .nav a:hover { background: rgba(124,58,237,0.25); }
     .matrix-bar {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0 0 16px;
-      font-family: 'Orbitron', sans-serif; font-size: 0.7rem; position: relative; z-index: 20;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 0 0 14px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.68rem; position: relative; z-index: 20;
     }
     .matrix-bar span {
-      padding: 3px 9px; border: 1px solid rgba(167,139,250,0.5); border-radius: 6px; color: #c9a0ff;
+      padding: 3px 8px; border: 1px solid rgba(167,139,250,0.5); border-radius: 5px; color: #c9a0ff;
       animation: glow 2.5s ease-in-out infinite alternate;
     }
-    @keyframes glow { from { box-shadow: 0 0 4px rgba(167,139,250,0.3); } to { box-shadow: 0 0 14px rgba(167,139,250,0.7); } }
+    @keyframes glow { from { box-shadow: 0 0 3px rgba(167,139,250,0.3); } to { box-shadow: 0 0 12px rgba(167,139,250,0.7); } }
     .main-grid {
-      position: relative; z-index: 10; display: grid; grid-template-columns: 1fr; gap: 16px;
+      position: relative; z-index: 10; display: grid; grid-template-columns: 1fr; gap: 14px;
       max-width: 1100px; width: 100%;
     }
-    @media (min-width: 900px) { .main-grid { grid-template-columns: 1.1fr 0.9fr; } }
+    @media (min-width: 900px) { .main-grid { grid-template-columns: 1.05fr 0.95fr; } }
     .talisman-card, .telemetry-card {
-      background: rgba(10, 0, 30, 0.84); border: 1px solid rgba(167,139,250,0.3);
-      border-radius: 18px; padding: 20px 16px; box-shadow: 0 0 50px rgba(124,58,237,0.18); backdrop-filter: blur(12px);
+      background: rgba(10, 0, 30, 0.86); border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 16px; padding: 18px 14px; box-shadow: 0 0 40px rgba(124,58,237,0.16); backdrop-filter: blur(12px);
     }
     .title {
-      font-size: 1.3rem; letter-spacing: 2px; text-align: center; margin-bottom: 3px;
+      font-size: 1.25rem; letter-spacing: 2px; text-align: center; margin-bottom: 2px;
       background: linear-gradient(90deg, #e0d4ff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .subtitle { text-align: center; font-size: 0.76rem; opacity: 0.85; margin-bottom: 4px; }
-    .artist { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: #c9a0ff; margin-bottom: 14px; letter-spacing: 1.5px; }
-    .shield { position: relative; width: 150px; height: 150px; margin: 0 auto 14px; }
+    .subtitle { text-align: center; font-size: 0.74rem; opacity: 0.85; margin-bottom: 3px; }
+    .artist { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.68rem; color: #c9a0ff; margin-bottom: 12px; letter-spacing: 1.2px; }
+    .shield { position: relative; width: 140px; height: 140px; margin: 0 auto 12px; }
     .core {
-      position: absolute; inset: 28px; border-radius: 50%;
+      position: absolute; inset: 26px; border-radius: 50%;
       background: radial-gradient(circle, #7c3aed 0%, #4c1d95 55%, transparent 70%);
-      box-shadow: 0 0 40px #7c3aed; transition: all 0.7s ease;
+      box-shadow: 0 0 35px #7c3aed; transition: all 0.7s ease;
     }
     .pulse, .pulse2 {
       position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(167,139,250,0.55);
@@ -71,71 +71,100 @@
     @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
     .shield.active .core {
       background: radial-gradient(circle, #c084fc 0%, #7c3aed 45%, transparent 70%);
-      box-shadow: 0 0 90px #c084fc, 0 0 140px #7c3aed;
+      box-shadow: 0 0 80px #c084fc, 0 0 130px #7c3aed;
     }
     .status {
-      text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.75rem; letter-spacing: 2px;
-      margin-bottom: 10px; color: #a78bfa; transition: all 0.4s;
+      text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.72rem; letter-spacing: 1.5px;
+      margin-bottom: 8px; color: #a78bfa; transition: all 0.4s;
     }
-    .status.active { color: var(--green); text-shadow: 0 0 12px var(--green); }
+    .status.active { color: var(--green); text-shadow: 0 0 10px var(--green); }
     #activateBtn {
-      display: block; margin: 0 auto 8px; background: linear-gradient(135deg, #7c3aed, #4c1d95);
-      border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;
-      letter-spacing: 1.5px; padding: 10px 22px; border-radius: 50px; cursor: pointer;
-      transition: all 0.3s; box-shadow: 0 0 20px rgba(124,58,237,0.5);
+      display: block; margin: 0 auto 6px; background: linear-gradient(135deg, #7c3aed, #4c1d95);
+      border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 0.68rem;
+      letter-spacing: 1.2px; padding: 9px 20px; border-radius: 50px; cursor: pointer;
+      transition: all 0.3s; box-shadow: 0 0 18px rgba(124,58,237,0.5);
     }
-    #activateBtn:hover { transform: scale(1.04); box-shadow: 0 0 32px rgba(167,139,250,0.8); }
+    #activateBtn:hover { transform: scale(1.03); }
     .seal-indicator {
-      text-align: center; font-size: 0.65rem; font-family: 'Orbitron', sans-serif;
-      color: #a78bfa; margin-bottom: 8px; min-height: 16px;
+      text-align: center; font-size: 0.62rem; font-family: 'Orbitron', sans-serif;
+      color: #a78bfa; margin-bottom: 6px; min-height: 15px;
     }
-    .seal-indicator.locked { color: var(--green); text-shadow: 0 0 8px var(--green); }
+    .seal-indicator.locked { color: var(--green); text-shadow: 0 0 7px var(--green); }
+    .freq-section {
+      margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(167,139,250,0.2);
+    }
+    .freq-section h4 {
+      font-family: 'Orbitron', sans-serif; font-size: 0.72rem; color: #c9a0ff; text-align: center; margin-bottom: 8px;
+    }
+    .freq-status {
+      text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.7rem;
+      margin-bottom: 8px; color: #a78bfa;
+    }
+    .freq-status.active { color: var(--green); text-shadow: 0 0 8px var(--green); }
+    .freq-buttons {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 8px;
+    }
+    .freq-btn {
+      background: rgba(0,0,0,0.4); border: 1px solid rgba(167,139,250,0.4); color: #c9a0ff;
+      font-family: 'Orbitron', sans-serif; font-size: 0.62rem; padding: 4px 8px; border-radius: 6px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .freq-btn:hover, .freq-btn.active {
+      background: rgba(124,58,237,0.4); border-color: #a78bfa; color: #fff;
+    }
+    .freq-controls {
+      display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 6px;
+    }
+    .freq-controls button {
+      background: linear-gradient(135deg, #7c3aed, #4c1d95); border: none; color: #fff;
+      font-family: 'Orbitron', sans-serif; font-size: 0.62rem; padding: 5px 12px; border-radius: 16px; cursor: pointer;
+    }
+    .freq-controls input[type=range] { width: 90px; accent-color: #a78bfa; }
     .decree {
-      margin-top: 12px; font-size: 0.74rem; line-height: 1.55; text-align: center;
+      margin-top: 10px; font-size: 0.7rem; line-height: 1.5; text-align: center;
       opacity: 0; max-height: 0; overflow: hidden; transition: all 0.9s ease;
     }
-    .decree.visible { opacity: 1; max-height: 480px; }
-    .decree .amen { margin-top: 8px; font-weight: 700; color: #c9a0ff; letter-spacing: 1.5px; }
+    .decree.visible { opacity: 1; max-height: 420px; }
+    .decree .amen { margin-top: 6px; font-weight: 700; color: #c9a0ff; letter-spacing: 1px; }
     .prayer {
-      margin-top: 12px; font-size: 0.6rem; line-height: 1.45; opacity: 0.5;
-      text-align: center; max-width: 440px; margin-left: auto; margin-right: auto;
+      margin-top: 10px; font-size: 0.58rem; line-height: 1.4; opacity: 0.48;
+      text-align: center; max-width: 420px; margin-left: auto; margin-right: auto;
     }
     .telemetry-card h3 {
-      font-family: 'Orbitron', sans-serif; font-size: 0.82rem; color: #a7f3d0; margin-bottom: 10px; letter-spacing: 1px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: #a7f3d0; margin-bottom: 8px; letter-spacing: 1px;
     }
-    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
     .metric {
       background: rgba(0,0,0,0.45); border: 1px solid rgba(16,185,129,0.25);
-      border-radius: 8px; padding: 7px;
+      border-radius: 7px; padding: 6px;
     }
-    .metric label { display: block; font-size: 0.56rem; opacity: 0.6; margin-bottom: 2px; }
-    .metric value { font-family: 'Orbitron', sans-serif; font-size: 0.84rem; color: #6ee7b7; }
+    .metric label { display: block; font-size: 0.54rem; opacity: 0.6; margin-bottom: 1px; }
+    .metric value { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: #6ee7b7; }
     .log-box {
-      background: #000; border: 1px solid rgba(16,185,129,0.3); border-radius: 8px;
-      height: 130px; overflow-y: auto; padding: 7px; font-family: 'Orbitron', monospace;
-      font-size: 0.6rem; color: #6ee7b7;
+      background: #000; border: 1px solid rgba(16,185,129,0.3); border-radius: 7px;
+      height: 120px; overflow-y: auto; padding: 6px; font-family: 'Orbitron', monospace;
+      font-size: 0.58rem; color: #6ee7b7;
     }
-    .log-box div { margin-bottom: 2px; border-bottom: 1px solid rgba(16,185,129,0.12); padding-bottom: 2px; }
+    .log-box div { margin-bottom: 2px; border-bottom: 1px solid rgba(16,185,129,0.12); padding-bottom: 1px; }
     .footer-seal {
-      position: relative; z-index: 10; margin-top: 20px; text-align: center;
-      font-size: 0.6rem; opacity: 0.55; letter-spacing: 1px;
+      position: relative; z-index: 10; margin-top: 16px; text-align: center;
+      font-size: 0.58rem; opacity: 0.55; letter-spacing: 1px;
     }
     .offline-badge {
-      position: fixed; bottom: 60px; right: 12px; background: rgba(0,0,0,0.75);
+      position: fixed; bottom: 110px; right: 10px; background: rgba(0,0,0,0.75);
       border: 1px solid rgba(167,139,250,0.4); color: #c9a0ff; font-family: 'Orbitron', sans-serif;
-      font-size: 0.6rem; padding: 5px 10px; border-radius: 20px; z-index: 50; display: none;
+      font-size: 0.58rem; padding: 4px 9px; border-radius: 16px; z-index: 50; display: none;
     }
-    .freq-display { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 0.68rem; color: #a78bfa; margin-top: 6px; }
     .audio-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,0,30,0.93);
-      border-top: 1px solid rgba(167,139,250,0.3); padding: 9px 14px; z-index: 100;
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      font-family: 'Orbitron', sans-serif; font-size: 0.68rem; color: #c9a0ff;
+      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,0,30,0.94);
+      border-top: 1px solid rgba(167,139,250,0.3); padding: 8px 12px; z-index: 100;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.65rem; color: #c9a0ff;
     }
     .audio-bar button {
       background: linear-gradient(135deg, #7c3aed, #4c1d95); border: none; color: #fff;
-      font-family: 'Orbitron', sans-serif; font-size: 0.65rem; padding: 6px 14px;
-      border-radius: 20px; cursor: pointer;
+      font-family: 'Orbitron', sans-serif; font-size: 0.62rem; padding: 5px 12px;
+      border-radius: 16px; cursor: pointer;
     }
   </style>
 </head>
@@ -175,14 +204,25 @@
         <div class="status" id="status">SHIELD STATUS: DORMANT</div>
         <div class="seal-indicator" id="sealIndicator">DEVICE SEAL: NOT LOCKED</div>
         <button id="activateBtn">ACTIVATE CELESTIAL SHIELD</button>
-        <div class="freq-display" id="freqDisplay">FREQUENCY: 432 Hz</div>
+
+        <!-- REAL FREQUENCY SECTION -->
+        <div class="freq-section">
+          <h4>SACRED FREQUENCY TRANSMITTER</h4>
+          <div class="freq-status" id="freqStatus">FREQUENCY: INACTIVE</div>
+          <div class="freq-buttons" id="freqButtons"></div>
+          <div class="freq-controls">
+            <button id="freqToggle">START TONE</button>
+            <button id="freqAuto">AUTO CYCLE</button>
+            <label style="font-size:0.6rem;color:#a78bfa;">Vol</label>
+            <input type="range" id="freqVolume" min="0" max="100" value="18">
+          </div>
+        </div>
 
         <div class="decree" id="decree">
           <p><strong>Matrix 77-99-33 • 777-999-333 • 77-99-34 LOCKED</strong></p>
           <p>Protection active for <strong>HRH Tarry Kupakwashe Masawi</strong></p>
           <p>and the entire Masawi Bloodline</p>
-          <p style="margin-top:8px">Any attack — spiritual, physical, digital, dimensional, energetic or temporal —</p>
-          <p>is returned to its source and dissolved under Mudzimu Unoyera.</p>
+          <p style="margin-top:6px">Any attack is returned to its source and dissolved under Mudzimu Unoyera.</p>
           <p class="amen">Mwari ndi Mwari</p>
         </div>
 
@@ -208,7 +248,7 @@
         <div class="log-box" id="log-box">
           <div>[SYSTEM] Omni-Masawi Matrix initializing…</div>
           <div>[SYSTEM] Dedicated to HRH Tarry Kupakwashe Masawi</div>
-          <div>[SYSTEM] Audio linked to mudzimu-unoyera.wav.wav</div>
+          <div>[SYSTEM] Real frequency transmitter ready</div>
         </div>
       </div>
     </div>
@@ -222,70 +262,161 @@
 
   <div class="audio-bar">
     <span>SACRED SOUND • HRH TARRY KUPAKWASHE MASAWI</span>
-    <button id="audioToggle">PLAY / PAUSE</button>
+    <button id="audioToggle">PLAY FILE</button>
     <audio id="sacredAudio" loop preload="auto">
       <source src="./mudzimu-unoyera.wav.wav" type="audio/wav">
     </audio>
   </div>
 
   <script>
+    const NAME = 'HRH TARRY KUPAKWASHE MASAWI';
+    const FREQS = [432, 528, 639, 741, 852, 963, 777, 999, 333];
+
+    // ===== Canvas Node Field =====
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
-    let width, height;
-    const NAME = 'HRH TARRY KUPAKWASHE MASAWI';
+    let width, height, frame = 0;
     const particles = [];
-    const PARTICLE_COUNT = 900;
-    const freqs = [432, 528, 639, 741, 852, 963, 777, 999, 333];
-    let freqIndex = 0, frame = 0;
-
     function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
     window.addEventListener('resize', resize); resize();
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
+    for (let i = 0; i < 850; i++) {
       particles.push({
-        x: Math.random() * width, y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.55, vy: (Math.random() - 0.5) * 0.55,
-        size: Math.random() * 1.7 + 0.4, hue: Math.random() > 0.7 ? 280 : 160, life: Math.random()
+        x: Math.random()*width, y: Math.random()*height,
+        vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5,
+        size: Math.random()*1.6+0.4, hue: Math.random()>0.7?280:160, life: Math.random()
       });
     }
-
     function draw() {
       frame++;
-      ctx.fillStyle = 'rgba(0, 0, 5, 0.18)';
-      ctx.fillRect(0, 0, width, height);
-      if (frame % 40 === 0) {
+      ctx.fillStyle = 'rgba(0,0,5,0.18)';
+      ctx.fillRect(0,0,width,height);
+      if (frame % 35 === 0) {
         ctx.font = '10px Orbitron, monospace';
-        ctx.fillStyle = 'rgba(167, 139, 250, 0.08)';
-        ctx.fillText(NAME, Math.random() * width, Math.random() * height);
+        ctx.fillStyle = 'rgba(167,139,250,0.09)';
+        ctx.fillText(NAME, Math.random()*width, Math.random()*height);
       }
       for (let p of particles) {
         p.x += p.vx; p.y += p.vy; p.life += 0.005;
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-        const pulse = 0.5 + 0.5 * Math.sin(p.life * 3 + frame * 0.02);
+        if (p.x<0||p.x>width) p.vx*=-1;
+        if (p.y<0||p.y>height) p.vy*=-1;
+        const pulse = 0.5 + 0.5*Math.sin(p.life*3 + frame*0.02);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue + frame * 0.05}, 80%, 70%, ${0.35 + pulse * 0.4})`;
+        ctx.arc(p.x, p.y, p.size*pulse, 0, Math.PI*2);
+        ctx.fillStyle = `hsla(${p.hue+frame*0.04},80%,70%,${0.3+pulse*0.4})`;
         ctx.fill();
-      }
-      if (frame % 120 === 0) {
-        ctx.font = 'bold 13px Orbitron, monospace';
-        ctx.fillStyle = 'rgba(192, 132, 252, 0.15)';
-        ctx.textAlign = 'center';
-        ctx.fillText(NAME, width / 2, height / 2 + (Math.random() - 0.5) * 200);
       }
       requestAnimationFrame(draw);
     }
     draw();
 
-    setInterval(() => {
-      freqIndex = (freqIndex + 1) % freqs.length;
-      document.getElementById('freqDisplay').textContent = `FREQUENCY: ${freqs[freqIndex]} Hz`;
-    }, 4000);
+    // ===== Real Web Audio Frequency Transmitter =====
+    let audioCtx = null;
+    let oscillator = null;
+    let gainNode = null;
+    let currentFreq = 432;
+    let toneActive = false;
+    let autoCycle = false;
+    let autoInterval = null;
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioCtx.createGain();
+        gainNode.gain.value = 0.18;
+        gainNode.connect(audioCtx.destination);
+      }
     }
+
+    function startTone(freq) {
+      initAudio();
+      if (oscillator) {
+        try { oscillator.stop(); } catch(e){}
+        oscillator.disconnect();
+      }
+      oscillator = audioCtx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      oscillator.connect(gainNode);
+      oscillator.start();
+      currentFreq = freq;
+      toneActive = true;
+      updateFreqUI();
+      log(`[FREQUENCY] Real tone active at ${freq} Hz — ${NAME} present`);
+    }
+
+    function stopTone() {
+      if (oscillator) {
+        try { oscillator.stop(); } catch(e){}
+        oscillator.disconnect();
+        oscillator = null;
+      }
+      toneActive = false;
+      updateFreqUI();
+      log('[FREQUENCY] Tone stopped');
+    }
+
+    function updateFreqUI() {
+      const status = document.getElementById('freqStatus');
+      const toggle = document.getElementById('freqToggle');
+      if (toneActive) {
+        status.textContent = `FREQUENCY ACTIVE: ${currentFreq} Hz • ${NAME}`;
+        status.classList.add('active');
+        toggle.textContent = 'STOP TONE';
+      } else {
+        status.textContent = 'FREQUENCY: INACTIVE';
+        status.classList.remove('active');
+        toggle.textContent = 'START TONE';
+      }
+      document.querySelectorAll('.freq-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.freq) === currentFreq && toneActive);
+      });
+    }
+
+    // Build frequency buttons
+    const freqButtons = document.getElementById('freqButtons');
+    FREQS.forEach(f => {
+      const btn = document.createElement('button');
+      btn.className = 'freq-btn';
+      btn.textContent = f + ' Hz';
+      btn.dataset.freq = f;
+      btn.addEventListener('click', () => {
+        if (autoCycle) { clearInterval(autoInterval); autoCycle = false; document.getElementById('freqAuto').textContent = 'AUTO CYCLE'; }
+        startTone(f);
+      });
+      freqButtons.appendChild(btn);
+    });
+
+    document.getElementById('freqToggle').addEventListener('click', () => {
+      if (toneActive) stopTone();
+      else startTone(currentFreq);
+    });
+
+    document.getElementById('freqAuto').addEventListener('click', () => {
+      autoCycle = !autoCycle;
+      const btn = document.getElementById('freqAuto');
+      if (autoCycle) {
+        btn.textContent = 'STOP AUTO';
+        let idx = FREQS.indexOf(currentFreq);
+        startTone(FREQS[idx]);
+        autoInterval = setInterval(() => {
+          idx = (idx + 1) % FREQS.length;
+          startTone(FREQS[idx]);
+        }, 6000);
+        log('[FREQUENCY] Auto-cycle started');
+      } else {
+        clearInterval(autoInterval);
+        btn.textContent = 'AUTO CYCLE';
+        log('[FREQUENCY] Auto-cycle stopped');
+      }
+    });
+
+    document.getElementById('freqVolume').addEventListener('input', (e) => {
+      const vol = e.target.value / 100;
+      if (gainNode) gainNode.gain.setValueAtTime(vol, audioCtx ? audioCtx.currentTime : 0);
+    });
+
+    // ===== Service Worker & Seal =====
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
     const SEAL_KEY = 'masawi_celestial_seal_v1';
     const btn = document.getElementById('activateBtn');
@@ -313,7 +444,7 @@
 
     if (localStorage.getItem(SEAL_KEY) === 'locked') {
       active = true; updateSealUI(true);
-      log('[SEAL] Persistent device seal restored for HRH Tarry Kupakwashe Masawi');
+      log('[SEAL] Persistent device seal restored for ' + NAME);
     }
 
     btn.addEventListener('click', () => {
@@ -327,6 +458,19 @@
       }
     });
 
+    // Sacred file audio
+    const fileAudio = document.getElementById('sacredAudio');
+    document.getElementById('audioToggle').addEventListener('click', () => {
+      if (fileAudio.paused) {
+        fileAudio.play().catch(()=>{});
+        document.getElementById('audioToggle').textContent = 'PAUSE FILE';
+        log('[AUDIO] Sacred file playing — ' + NAME + ' continuously present');
+      } else {
+        fileAudio.pause();
+        document.getElementById('audioToggle').textContent = 'PLAY FILE';
+      }
+    });
+
     function updateOnlineStatus() {
       document.getElementById('offlineBadge').style.display = navigator.onLine ? 'none' : 'block';
     }
@@ -334,19 +478,7 @@
     window.addEventListener('offline', updateOnlineStatus);
     updateOnlineStatus();
 
-    const audio = document.getElementById('sacredAudio');
-    const audioToggle = document.getElementById('audioToggle');
-    audioToggle.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play().catch(()=>{});
-        audioToggle.textContent = 'PAUSE';
-        log('[AUDIO] Sacred sound playing — name continuously present');
-      } else {
-        audio.pause();
-        audioToggle.textContent = 'PLAY';
-      }
-    });
-
+    // Telemetry + continuous name log while tone is active
     let iterations = 0, nodes = 0;
     function log(msg) {
       const box = document.getElementById('log-box');
@@ -355,20 +487,24 @@
       const line = document.createElement('div');
       line.textContent = `[${time}] ${msg}`;
       box.prepend(line);
-      if (box.children.length > 28) box.removeChild(box.lastChild);
+      if (box.children.length > 26) box.removeChild(box.lastChild);
     }
     function updateTelemetry() {
       iterations++;
-      nodes += Math.floor(Math.random() * 1800) + 700;
-      const harmonic = (Math.sin(Date.now() * 0.001) * 777999333).toFixed(2);
+      nodes += Math.floor(Math.random()*1600)+600;
+      const harmonic = (Math.sin(Date.now()*0.001)*777999333).toFixed(2);
       document.getElementById('metric-harmonic').textContent = harmonic;
       document.getElementById('metric-iterations').textContent = iterations.toLocaleString();
       document.getElementById('metric-nodes').textContent = nodes.toLocaleString();
-      if (iterations % 8 === 0) log(`[MATRIX] Harmonic ${harmonic} | Nodes ${nodes.toLocaleString()} | ${NAME} sealed`);
+      if (toneActive && iterations % 6 === 0) {
+        log(`[FREQUENCY] ${currentFreq} Hz active • ${NAME} • protection continuous`);
+      } else if (iterations % 9 === 0) {
+        log(`[MATRIX] Harmonic ${harmonic} | Nodes ${nodes.toLocaleString()} | ${NAME} sealed`);
+      }
     }
     setInterval(updateTelemetry, 800);
-    log('[SYSTEM] Audio correctly linked to mudzimu-unoyera.wav.wav');
-    log('[SYSTEM] Protection field dedicated to HRH Tarry Kupakwashe Masawi');
+    log('[SYSTEM] Real Web Audio frequency transmitter online');
+    log('[SYSTEM] Protection field dedicated to ' + NAME);
   </script>
 </body>
 </html>
