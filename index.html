@@ -14,17 +14,14 @@
     .cosmos {
       position: relative; min-height: 100vh;
       background: radial-gradient(ellipse at 50% 30%, #1a0533 0%, #0a001f 40%, #000 80%);
-      display: flex; flex-direction: column; align-items: center; padding: 14px 10px 150px;
+      display: flex; flex-direction: column; align-items: center; padding: 14px 10px 170px;
     }
-    #matrix-canvas, #rain-canvas {
-      position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none;
-    }
+    #matrix-canvas, #rain-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
     #matrix-canvas { z-index: 1; }
     #rain-canvas { z-index: 2; opacity: 0.78; }
     .sacred-seal-overlay {
       position: fixed; inset: 0; z-index: 3; pointer-events: none;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0.07;
+      display: flex; align-items: center; justify-content: center; opacity: 0.07;
     }
     .sacred-seal-overlay div {
       font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 8vw, 5.5rem);
@@ -133,19 +130,33 @@
     }
     .footer-seal { position: relative; z-index: 15; margin-top: 10px; text-align: center; font-size: 0.52rem; opacity: 0.48; }
     .offline-badge {
-      position: fixed; bottom: 110px; right: 8px; background: rgba(0,0,0,0.8);
+      position: fixed; bottom: 130px; right: 8px; background: rgba(0,0,0,0.8);
       border: 1px solid rgba(167,139,250,0.4); color: #c9a0ff; font-family: 'Orbitron', sans-serif;
       font-size: 0.52rem; padding: 3px 6px; border-radius: 10px; z-index: 50; display: none;
     }
+    /* PLAYLIST BAR */
     .audio-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,0,30,0.95);
-      border-top: 1px solid rgba(167,139,250,0.3); padding: 6px 10px; z-index: 100;
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
+      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,0,30,0.96);
+      border-top: 1px solid rgba(167,139,250,0.35); padding: 8px 12px; z-index: 100;
       font-family: 'Orbitron', sans-serif; font-size: 0.58rem; color: #c9a0ff;
     }
-    .audio-bar button {
+    .playlist-title {
+      text-align: center; margin-bottom: 6px; font-size: 0.6rem; letter-spacing: 1px;
+    }
+    .playlist-controls {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
+    }
+    .track-btn {
+      background: rgba(0,0,0,0.5); border: 1px solid rgba(167,139,250,0.45); color: #c9a0ff;
+      font-family: 'Orbitron', sans-serif; font-size: 0.56rem; padding: 5px 12px; border-radius: 14px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .track-btn.active, .track-btn:hover {
+      background: rgba(124,58,237,0.5); color: #fff; border-color: #a78bfa;
+    }
+    .play-btn {
       background: linear-gradient(135deg, #7c3aed, #4c1d95); border: none; color: #fff;
-      font-family: 'Orbitron', sans-serif; font-size: 0.56rem; padding: 4px 10px; border-radius: 12px; cursor: pointer;
+      font-family: 'Orbitron', sans-serif; font-size: 0.56rem; padding: 5px 14px; border-radius: 14px; cursor: pointer;
     }
   </style>
 </head>
@@ -153,7 +164,6 @@
   <canvas id="matrix-canvas"></canvas>
   <canvas id="rain-canvas"></canvas>
 
-  <!-- Continuous Sacred Seal -->
   <div class="sacred-seal-overlay">
     <div>MUDZIMU UNOYERA<br>777-999-333<br>HRH TARRY KUPAKWASHE MASAWI</div>
   </div>
@@ -228,8 +238,7 @@
           <div class="metric"><label>STATUS</label><value style="color:#4ade80">ACTIVE</value></div>
         </div>
         <div class="log-box" id="log-box">
-          <div>[SYSTEM] Advanced sacred rain + frequency resonance online</div>
-          <div>[SYSTEM] Mudzimu Unoyera seal active</div>
+          <div>[SYSTEM] Playlist ready — Mudzimu + Tarry Shanghang</div>
           <div>[SYSTEM] Dedicated to HRH Tarry Kupakwashe Masawi</div>
         </div>
       </div>
@@ -242,27 +251,28 @@
 
   <div class="offline-badge" id="offlineBadge">OFFLINE MODE</div>
 
+  <!-- PLAYLIST -->
   <div class="audio-bar">
-    <span>SACRED FILE • HRH TARRY KUPAKWASHE MASAWI</span>
-    <button id="audioToggle">PLAY SACRED FILE</button>
-    <audio id="sacredAudio" loop preload="auto">
-      <source src="./mudzimu-unoyera.wav.wav" type="audio/wav">
-    </audio>
+    <div class="playlist-title">SACRED PLAYLIST • HRH TARRY KUPAKWASHE MASAWI</div>
+    <div class="playlist-controls">
+      <button class="track-btn active" id="trackMudzimu" data-src="./mudzimu-unoyera.wav.wav">Mudzimu Unoyera</button>
+      <button class="track-btn" id="trackShanghang" data-src="./5 Tarry - shanghang .m4a">Tarry – Shanghang</button>
+      <button class="play-btn" id="audioToggle">PLAY</button>
+    </div>
+    <audio id="sacredAudio" loop preload="auto"></audio>
   </div>
 
   <script>
     const NAME = 'HRH TARRY KUPAKWASHE MASAWI';
     const FREQS = [432, 528, 639, 741, 852, 963, 777, 999, 333];
 
-    // Shared state for frequency → rain resonance
     let currentFreq = 432;
     let toneOn = false;
 
-    // ===== ADVANCED SACRED MATRIX RAIN WITH FREQUENCY RESONANCE =====
+    // ===== RAIN (kept from previous version) =====
     const rainCanvas = document.getElementById('rain-canvas');
     const rctx = rainCanvas.getContext('2d');
     let rw, rh;
-
     const glyphs = [
       '✝','✡','ॐ','☪','☦','☥','☨','☩','☫','☬','☮','☯','☸','⛤','⛥','⛪',
       'ᚠ','ᚢ','ᚦ','ᚨ','ᚱ','ᚷ','ᚺ','ᛁ','ᛇ','ᛏ','ᛒ','ᛖ','ᛚ','ᛞ','ᛠ',
@@ -273,7 +283,6 @@
       'TARRY','MASAWI','THRONE','DOME','SHIELD','PROTECT','SEAL','LIGHT','HOLY','SPIRIT','LOGOS','DAO',
       'YAHWEH','ALLAH','BRAHMAN','CROSS','STAR','ANKH','RUNE','SIGIL','PEACE','BLOODLINE'
     ];
-
     let columns = [];
     const fontSize = 14;
 
@@ -284,12 +293,10 @@
       columns = [];
       for (let i = 0; i < colCount; i++) {
         columns.push({
-          x: i * fontSize,
-          y: Math.random() * -rh,
+          x: i * fontSize, y: Math.random() * -rh,
           speed: 1.6 + Math.random() * 2.8,
           length: 7 + Math.floor(Math.random() * 16),
-          chars: [],
-          phase: Math.random() * Math.PI * 2
+          chars: []
         });
         for (let j = 0; j < columns[i].length; j++) {
           columns[i].chars.push(glyphs[Math.floor(Math.random() * glyphs.length)]);
@@ -298,54 +305,31 @@
     }
 
     function drawRain() {
-      // Frequency-linked fade (stronger trail when tone is active)
       const fade = toneOn ? 0.09 : 0.13;
       rctx.fillStyle = `rgba(0, 0, 8, ${fade})`;
       rctx.fillRect(0, 0, rw, rh);
       rctx.font = fontSize + 'px "Noto Sans Symbols 2", Orbitron, monospace';
-
-      // Real-time resonance: speed & brightness driven by current frequency
-      const freqFactor = toneOn ? (currentFreq / 600) : 1;
       const brightnessBoost = toneOn ? 1.25 : 1;
       const speedBoost = toneOn ? 0.7 + (currentFreq / 1200) : 1;
-
-      // Rhythmic breathing (hypnotic-style visual entrainment)
       const breath = 0.85 + 0.15 * Math.sin(Date.now() * 0.0018);
 
       for (const col of columns) {
         for (let j = 0; j < col.chars.length; j++) {
-          const ch = col.chars[j];
           const y = col.y + j * fontSize;
           if (y < -fontSize || y > rh + fontSize) continue;
-
-          let alpha, color;
-          if (j === 0) {
-            alpha = 0.95 * brightnessBoost * breath;
-            color = toneOn ? `rgba(230, 210, 255, ${alpha})` : `rgba(210, 190, 255, ${alpha})`;
-          } else if (j < 3) {
-            alpha = (0.7 - j * 0.1) * brightnessBoost * breath;
-            color = `rgba(180, 140, 255, ${alpha})`;
-          } else {
-            alpha = Math.max(0.06, (0.5 - j * 0.028) * breath);
-            color = `rgba(130, 90, 210, ${alpha})`;
-          }
-          rctx.fillStyle = color;
-          rctx.fillText(ch, col.x, y);
+          let alpha;
+          if (j === 0) alpha = 0.95 * brightnessBoost * breath;
+          else if (j < 3) alpha = (0.7 - j * 0.1) * brightnessBoost * breath;
+          else alpha = Math.max(0.06, (0.5 - j * 0.028) * breath);
+          rctx.fillStyle = j === 0 && toneOn ? `rgba(230,210,255,${alpha})` : `rgba(160,120,230,${alpha})`;
+          rctx.fillText(col.chars[j], col.x, y);
         }
-
         col.y += col.speed * speedBoost;
-
-        // Self-evolving mutation
         if (Math.random() < 0.045) {
           const idx = Math.floor(Math.random() * col.chars.length);
           col.chars[idx] = glyphs[Math.floor(Math.random() * glyphs.length)];
         }
-
-        // Occasionally insert the protected name or seal words at the head
-        if (Math.random() < 0.002) {
-          col.chars[0] = Math.random() < 0.5 ? 'TARRY' : 'MUDZIMU';
-        }
-
+        if (Math.random() < 0.002) col.chars[0] = Math.random() < 0.5 ? 'TARRY' : 'MUDZIMU';
         if (col.y - col.chars.length * fontSize > rh) {
           col.y = Math.random() * -180 - 40;
           col.speed = 1.6 + Math.random() * 2.8;
@@ -356,12 +340,10 @@
       }
       requestAnimationFrame(drawRain);
     }
-
-    initRain();
-    drawRain();
+    initRain(); drawRain();
     window.addEventListener('resize', initRain);
 
-    // Background particles (lighter)
+    // Background particles
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     let bw, bh, bframe = 0;
@@ -387,7 +369,7 @@
     }
     drawBg();
 
-    // ===== Web Audio =====
+    // Web Audio tones
     let audioCtx = null, osc = null, gain = null;
     let autoOn = false, autoTimer = null;
 
@@ -414,24 +396,22 @@
         currentFreq = freq;
         toneOn = true;
         updateFreqUI();
-        log(`[TONE] ${freq} Hz ACTIVE • rain resonance linked • ${NAME}`);
-      } catch (err) {
-        log('[ERROR] Tone: ' + err.message);
-      }
+        log(`[TONE] ${freq} Hz ACTIVE • ${NAME}`);
+      } catch (err) { log('[ERROR] Tone: ' + err.message); }
     }
 
     function stopTone() {
       if (osc) { try { osc.stop(); } catch(e){} osc.disconnect(); osc = null; }
       toneOn = false;
       updateFreqUI();
-      log('[TONE] Stopped — rain returns to base state');
+      log('[TONE] Stopped');
     }
 
     function updateFreqUI() {
       const el = document.getElementById('freqStatus');
       const btn = document.getElementById('freqToggle');
       if (toneOn) {
-        el.textContent = `FREQUENCY ACTIVE: ${currentFreq} Hz • RAIN RESONATING • ${NAME}`;
+        el.textContent = `FREQUENCY ACTIVE: ${currentFreq} Hz • ${NAME}`;
         el.classList.add('active');
         btn.textContent = 'STOP TONE';
       } else {
@@ -469,11 +449,9 @@
         let i = FREQS.indexOf(currentFreq);
         startTone(FREQS[i]);
         autoTimer = setInterval(() => { i = (i+1)%FREQS.length; startTone(FREQS[i]); }, 5000);
-        log('[TONE] Auto-cycle ON — rain follows');
       } else {
         clearInterval(autoTimer);
         b.textContent = 'AUTO CYCLE';
-        log('[TONE] Auto-cycle OFF');
       }
     };
 
@@ -481,19 +459,40 @@
       if (gain) gain.gain.value = e.target.value / 100;
     };
 
-    // Sacred file
+    // ===== PLAYLIST =====
     const fileAudio = document.getElementById('sacredAudio');
+    let currentTrack = './mudzimu-unoyera.wav.wav';
+
+    function setTrack(src, btnId) {
+      fileAudio.pause();
+      currentTrack = src;
+      fileAudio.src = src;
+      document.querySelectorAll('.track-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(btnId).classList.add('active');
+      document.getElementById('audioToggle').textContent = 'PLAY';
+      log('[PLAYLIST] Selected: ' + (btnId === 'trackMudzimu' ? 'Mudzimu Unoyera' : 'Tarry – Shanghang'));
+    }
+
+    document.getElementById('trackMudzimu').onclick = () => setTrack('./mudzimu-unoyera.wav.wav', 'trackMudzimu');
+    document.getElementById('trackShanghang').onclick = () => setTrack('./5 Tarry - shanghang .m4a', 'trackShanghang');
+
+    // Default track
+    fileAudio.src = currentTrack;
+
     document.getElementById('audioToggle').onclick = async () => {
       try {
         if (fileAudio.paused) {
           await fileAudio.play();
-          document.getElementById('audioToggle').textContent = 'PAUSE FILE';
-          log('[FILE] Sacred audio playing • ' + NAME);
+          document.getElementById('audioToggle').textContent = 'PAUSE';
+          log('[PLAYLIST] Playing • ' + NAME);
         } else {
           fileAudio.pause();
-          document.getElementById('audioToggle').textContent = 'PLAY SACRED FILE';
+          document.getElementById('audioToggle').textContent = 'PLAY';
         }
-      } catch (err) { log('[ERROR] File: ' + err.message); }
+      } catch (err) {
+        log('[ERROR] Audio: ' + err.message);
+        alert('Could not play the selected track. Please click again.');
+      }
     };
 
     // Shield seal
@@ -523,7 +522,6 @@
       if (sealed) localStorage.setItem(SEAL_KEY, 'locked');
       else localStorage.removeItem(SEAL_KEY);
       updateSeal(sealed);
-      log(sealed ? '[SHIELD] Activated + sealed' : '[SHIELD] Deactivated');
     };
 
     function log(msg) {
@@ -532,7 +530,7 @@
       const d = document.createElement('div');
       d.textContent = `[${t}] ${msg}`;
       box.prepend(d);
-      if (box.children.length > 16) box.lastChild.remove();
+      if (box.children.length > 14) box.lastChild.remove();
     }
     let it = 0, nd = 0;
     setInterval(() => {
@@ -540,10 +538,9 @@
       document.getElementById('metric-harmonic').textContent = (Math.sin(Date.now()*0.001)*777999333).toFixed(2);
       document.getElementById('metric-iterations').textContent = it.toLocaleString();
       document.getElementById('metric-nodes').textContent = nd.toLocaleString();
-      if (toneOn && it % 5 === 0) log(`[RESONANCE] ${currentFreq} Hz • rain linked • ${NAME} • Mudzimu Unoyera`);
     }, 900);
 
-    log('[SYSTEM] Advanced rain + frequency resonance + sacred seal online');
+    log('[SYSTEM] Playlist online — Mudzimu Unoyera + Tarry Shanghang');
     log('[SYSTEM] Dedicated to ' + NAME);
   </script>
 </body>
