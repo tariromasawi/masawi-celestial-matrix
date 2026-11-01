@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Celestial Shield — HRH Tarry Kupakwashe Masawi | Omni-Masawi Matrix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --violet: #a78bfa;
+      --deep: #0a001f;
+      --glow: #c084fc;
+      --green: #4ade80;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      font-family: 'Cinzel', serif;
+      color: #e0d4ff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    .cosmos {
+      position: relative;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 30%, #1a0533 0%, #0a001f 40%, #000 80%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 60px;
+    }
+    .stars {
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 10% 20%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 30% 60%, rgba(180,160,255,0.9), transparent),
+        radial-gradient(1px 1px at 70% 30%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 90% 80%, rgba(200,180,255,0.7), transparent),
+        radial-gradient(1px 1px at 50% 50%, #fff, transparent);
+      background-size: 300px 200px;
+      animation: drift 80s linear infinite;
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-200px); }
+    }
+    .header-seal {
+      position: relative;
+      z-index: 20;
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+    .header-seal h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, #e0d4ff, #c084fc, #a78bfa, #e0d4ff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 4s linear infinite;
+    }
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+    .header-seal p {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+    .matrix-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 18px 0 28px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+    }
+    .matrix-bar span {
+      padding: 5px 12px;
+      border: 1px solid rgba(167,139,250,0.5);
+      border-radius: 6px;
+      color: #c9a0ff;
+      animation: glow 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 4px rgba(167,139,250,0.3); }
+      to { box-shadow: 0 0 16px rgba(167,139,250,0.7); }
+    }
+    .main-grid {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    @media (min-width: 900px) {
+      .main-grid { grid-template-columns: 1.1fr 0.9fr; }
+    }
+    .talisman-card, .telemetry-card {
+      background: rgba(10, 0, 30, 0.78);
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 20px;
+      padding: 28px 22px;
+      box-shadow: 0 0 60px rgba(124,58,237,0.18);
+      backdrop-filter: blur(12px);
+    }
+    .title {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 4px;
+      background: linear-gradient(90deg, #e0d4ff, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-bottom: 6px;
+    }
+    .artist {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      color: #c9a0ff;
+      margin-bottom: 22px;
+      letter-spacing: 1.5px;
+    }
+    .shield {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 22px;
+    }
+    .core {
+      position: absolute;
+      inset: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #7c3aed 0%, #4c1d95 55%, transparent 70%);
+      box-shadow: 0 0 50px #7c3aed;
+      transition: all 0.7s ease;
+    }
+    .pulse, .pulse2 {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid rgba(167,139,250,0.55);
+      animation: pulse 2.6s ease-out infinite;
+    }
+    .pulse2 { animation-delay: 1.3s; }
+    @keyframes pulse {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .shield.active .core {
+      background: radial-gradient(circle, #c084fc 0%, #7c3aed 45%, transparent 70%);
+      box-shadow: 0 0 100px #c084fc, 0 0 160px #7c3aed;
+    }
+    .status {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      color: #a78bfa;
+      transition: all 0.4s;
+    }
+    .status.active {
+      color: var(--green);
+      text-shadow: 0 0 14px var(--green);
+    }
+    #activateBtn {
+      display: block;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #7c3aed, #4c1d95);
+      border: none;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      padding: 13px 28px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 25px rgba(124,58,237,0.5);
+    }
+    #activateBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(167,139,250,0.8);
+    }
+    .decree {
+      margin-top: 22px;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      text-align: center;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.9s ease;
+    }
+    .decree.visible {
+      opacity: 1;
+      max-height: 500px;
+    }
+    .decree .amen {
+      margin-top: 12px;
+      font-weight: 700;
+      color: #c9a0ff;
+      letter-spacing: 1.5px;
+    }
+    .prayer {
+      margin-top: 20px;
+      font-size: 0.68rem;
+      line-height: 1.6;
+      opacity: 0.5;
+      text-align: center;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .telemetry-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      color: #a7f3d0;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .metric {
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .metric label {
+      display: block;
+      font-size: 0.65rem;
+      opacity: 0.6;
+      margin-bottom: 2px;
+    }
+    .metric value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      color: #6ee7b7;
+    }
+    .log-box {
+      background: #000;
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 10px;
+      height: 160px;
+      overflow-y: auto;
+      padding: 10px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.68rem;
+      color: #6ee7b7;
+    }
+    .log-box div {
+      margin-bottom: 4px;
+      border-bottom: 1px solid rgba(16,185,129,0.15);
+      padding-bottom: 3px;
+    }
+    .footer-seal {
+      position: relative;
+      z-index: 10;
+      margin-top: 36px;
+      text-align: center;
+      font-size: 0.7rem;
+      opacity: 0.6;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cosmos">
+    <div class="stars"></div>
+
+    <div class="header-seal">
+      <h1>OMNI-MASAWI CELESTIAL MATRIX</h1>
+      <p>PROTECTION SYSTEM • HRH TARRY KUPAKWASHE MASAWI • MATRIX 77-99-33 / 777-999-333</p>
+    </div>
+
+    <div class="matrix-bar">
+      <span>77</span><span>99</span><span>33</span>
+      <span>777</span><span>999</span><span>333</span>
+      <span>7777</span><span>9999</span><span>3333</span>
+      <span>77-99-34</span>
+    </div>
+
+    <div class="main-grid">
+      <!-- LEFT: Living Shield -->
+      <div class="talisman-card">
+        <h2 class="title">ZAKARIYA MAMBO</h2>
+        <p class="subtitle">TINZWE KUCHEMA HATICHEME NHANDO KANA TAWUNGANA</p>
+        <p class="artist">HRH TARRY KUPAKWASHE MASAWI</p>
+
+        <div class="shield" id="shield">
+          <div class="core"></div>
+          <div class="pulse"></div>
+          <div class="pulse2"></div>
+        </div>
+
+        <div class="status" id="status">SHIELD STATUS: DORMANT</div>
+        <button id="activateBtn">ACTIVATE CELESTIAL SHIELD</button>
+
+        <div class="decree" id="decree">
+          <p><strong>Matrix 77-99-33 • 777-999-333 • 77-99-34 LOCKED</strong></p>
+          <p>Protection active for <strong>HRH Tarry Kupakwashe Masawi</strong></p>
+          <p>and the entire Masawi Bloodline</p>
+          <p style="margin-top:10px">Any attack — spiritual, physical, digital, dimensional, energetic or temporal —</p>
+          <p>is returned to its source and dissolved under Mudzimu Unoyera.</p>
+          <p class="amen">Mwari ndi Mwari</p>
+        </div>
+
+        <div class="prayer">
+          Our Father who art in heaven, hallowed be Thy name.<br>
+          Thy kingdom come, Thy will be done on earth as it is in heaven.<br>
+          Give us this day our daily bread.<br>
+          And forgive us our trespasses as we forgive those who trespass against us.<br>
+          And lead us not into temptation, but deliver us from evil.<br>
+          For Thine is the kingdom, the power and the glory, forever and ever.<br>
+          Protect the Masawi Bloodline. Protect HRH Tarry Kupakwashe Masawi. Amen.
+        </div>
+      </div>
+
+      <!-- RIGHT: Live Telemetry -->
+      <div class="telemetry-card">
+        <h3>MATRIX TELEMETRY • LIVE</h3>
+        <div class="metrics">
+          <div class="metric">
+            <label>HARMONIC</label>
+            <value id="metric-harmonic">0.000</value>
+          </div>
+          <div class="metric">
+            <label>ITERATIONS</label>
+            <value id="metric-iterations">0</value>
+          </div>
+          <div class="metric">
+            <label>NODE DENSITY</label>
+            <value id="metric-nodes">0</value>
+          </div>
+          <div class="metric">
+            <label>STATUS</label>
+            <value id="metric-status" style="color:#4ade80">ACTIVE</value>
+          </div>
+        </div>
+
+        <div class="log-box" id="log-box">
+          <div>[SYSTEM] Omni-Masawi Matrix initializing…</div>
+          <div>[SYSTEM] Dedicated to HRH Tarry Kupakwashe Masawi</div>
+          <div>[SYSTEM] Matrix constants locked: 77-99-33 / 777-999-333</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-seal">
+      SOVEREIGNTY: HRH SAINT TARIRO MASAWI THE ANOINTED COMMANDER • MUDZIMU UNOYERA • MWARI NDI MWARI
+    </div>
+  </div>
+
+  <script>
+    // Shield controls
+    const btn = document.getElementById('activateBtn');
+    const shield = document.getElementById('shield');
+    const status = document.getElementById('status');
+    const decree = document.getElementById('decree');
+    let active = false;
+
+    btn.addEventListener('click', () => {
+      active = !active;
+      if (active) {
+        shield.classList.add('active');
+        status.classList.add('active');
+        status.textContent = 'SHIELD STATUS: ACTIVE • 777-999-333 LOCKED';
+        decree.classList.add('visible');
+        btn.textContent = 'SHIELD ACTIVE — SEALED';
+        log('[SHIELD] Celestial dome activated for HRH Tarry Kupakwashe Masawi');
+      } else {
+        shield.classList.remove('active');
+        status.classList.remove('active');
+        status.textContent = 'SHIELD STATUS: DORMANT';
+        decree.classList.remove('visible');
+        btn.textContent = 'ACTIVATE CELESTIAL SHIELD';
+        log('[SHIELD] Dome set to dormant');
+      }
+    });
+
+    // Live telemetry
+    let iterations = 0;
+    let nodes = 0;
+
+    function log(msg) {
+      const box = document.getElementById('log-box');
+      const time = new Date().toISOString().split('T')[1].slice(0,8);
+      const line = document.createElement('div');
+      line.textContent = `[${time}] ${msg}`;
+      box.prepend(line);
+      if (box.children.length > 30) box.removeChild(box.lastChild);
+    }
+
+    function updateTelemetry() {
+      iterations++;
+      nodes += Math.floor(Math.random() * 1200) + 400;
+      const harmonic = (Math.sin(Date.now() * 0.001) * 777999333).toFixed(2);
+
+      document.getElementById('metric-harmonic').textContent = harmonic;
+      document.getElementById('metric-iterations').textContent = iterations.toLocaleString();
+      document.getElementById('metric-nodes').textContent = nodes.toLocaleString();
+
+      if (iterations % 8 === 0) {
+        log(`[MATRIX] Harmonic ${harmonic} | Nodes ${nodes.toLocaleString()} | Tarry Kupakwashe Masawi sealed`);
+      }
+    }
+
+    setInterval(updateTelemetry, 900);
+    log('[SYSTEM] Advanced Celestial Shield online');
+    log('[SYSTEM] 15 backend engines registered');
+    log('[SYSTEM] Protection field dedicated to HRH Tarry Kupakwashe Masawi');
+  </script>
+</body>
+</html>
