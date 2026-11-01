@@ -95,7 +95,6 @@
     .footer {
       text-align: center; margin-top: 36px; font-size: 0.68rem; opacity: 0.55; letter-spacing: 1px;
     }
-    /* Persistent Audio Player */
     .audio-bar {
       position: fixed; bottom: 0; left: 0; right: 0;
       background: rgba(10,0,30,0.92); border-top: 1px solid rgba(167,139,250,0.3);
@@ -148,7 +147,7 @@
     <span>SACRED SOUND • HRH TARRY KUPAKWASHE MASAWI</span>
     <button id="audioToggle">PLAY / PAUSE</button>
     <audio id="sacredAudio" loop preload="auto">
-      <source src="./mudzimu-unoyera.wav" type="audio/wav">
+      <source src="./mudzimu-unoyera.wav.wav" type="audio/wav">
     </audio>
   </div>
 
@@ -190,7 +189,6 @@
       document.getElementById('stat-cycles').textContent = cycles.toLocaleString();
     }, 900);
 
-    // Audio
     const audio = document.getElementById('sacredAudio');
     const toggle = document.getElementById('audioToggle');
     toggle.addEventListener('click', () => {
