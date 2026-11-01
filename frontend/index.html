@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celestial Shield — HRH Tarry Kupakwashe Masawi | Omni-Masawi Matrix Talisman</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; font-family: 'Cinzel', serif; color: #e0d4ff; overflow-x: hidden; }
+    .cosmos { position: relative; min-height: 100vh; background: radial-gradient(ellipse at center, #0a001f 0%, #000 70%); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 40px 20px; }
+    .stars { position: fixed; width: 200%; height: 200%; top: 0; left: 0; background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent), radial-gradient(2px 2px at 40px 70px, rgba(180,160,255,0.8), transparent), radial-gradient(1px 1px at 90px 40px, #fff, transparent); background-size: 200px 100px; animation: drift 60s linear infinite; opacity: 0.5; pointer-events: none; z-index: 0; }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(-200px, -100px); } }
+    .talisman { position: relative; z-index: 10; text-align: center; max-width: 680px; width: 100%; padding: 40px 30px; background: rgba(10, 0, 30, 0.82); border: 1px solid rgba(180, 140, 255, 0.35); border-radius: 20px; box-shadow: 0 0 80px rgba(120, 60, 255, 0.3); backdrop-filter: blur(14px); margin-bottom: 40px; }
+    .matrix-ring { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; letter-spacing: 2px; color: #c9a0ff; }
+    .matrix-ring span { padding: 5px 11px; border: 1px solid rgba(180, 140, 255, 0.45); border-radius: 6px; animation: glow 2.8s ease-in-out infinite alternate; }
+    @keyframes glow { from { box-shadow: 0 0 6px rgba(180, 140, 255, 0.35); } to { box-shadow: 0 0 18px rgba(180, 140, 255, 0.8); } }
+    .title { font-size: 1.75rem; letter-spacing: 3px; margin-bottom: 6px; background: linear-gradient(90deg, #e0d4ff, #a78bfa, #e0d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: 0.92rem; opacity: 0.88; margin-bottom: 8px; letter-spacing: 1px; }
+    .artist { font-family: 'Orbitron', sans-serif; font-size: 0.85rem; color: #c9a0ff; margin-bottom: 28px; letter-spacing: 2px; }
+    .shield { position: relative; width: 170px; height: 170px; margin: 0 auto 28px; }
+    .core { position: absolute; inset: 32px; border-radius: 50%; background: radial-gradient(circle, #7c3aed 0%, #4c1d95 60%, transparent 70%); box-shadow: 0 0 50px #7c3aed; transition: all 0.6s ease; }
+    .pulse { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(167, 139, 250, 0.65); animation: pulse 2.4s ease-out infinite; }
+    .pulse.delay { animation-delay: 1.2s; }
+    @keyframes pulse { 0% { transform: scale(0.55); opacity: 1; } 100% { transform: scale(1.45); opacity: 0; } }
+    .shield.active .core { background: radial-gradient(circle, #c084fc 0%, #7c3aed 50%, transparent 70%); box-shadow: 0 0 90px #c084fc, 0 0 140px #7c3aed; }
+    .status { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 18px; color: #a78bfa; transition: all 0.4s; }
+    .status.active { color: #4ade80; text-shadow: 0 0 12px #4ade80; }
+    #activateBtn { background: linear-gradient(135deg, #7c3aed, #4c1d95); border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; letter-spacing: 2px; padding: 14px 30px; border-radius: 50px; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 25px rgba(124, 58, 237, 0.55); }
+    #activateBtn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(167, 139, 250, 0.85); }
+    .decree { margin-top: 28px; font-size: 0.88rem; line-height: 1.75; opacity: 0; max-height: 0; overflow: hidden; transition: all 0.85s ease; }
+    .decree.visible { opacity: 1; max-height: 600px; }
+    .decree .amen { margin-top: 14px; font-weight: 700; color: #c9a0ff; letter-spacing: 2px; }
+    .prayer { margin-top: 24px; font-size: 0.72rem; line-height: 1.65; opacity: 0.55; max-width: 520px; margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+  <div class="cosmos">
+    <div class="stars"></div>
+    <div class="talisman">
+      <div class="matrix-ring">
+        <span>77</span><span>99</span><span>33</span>
+        <span>777</span><span>999</span><span>333</span>
+        <span>7777</span><span>9999</span><span>3333</span>
+      </div>
+      <h1 class="title">ZAKARIYA MAMBO</h1>
+      <h2 class="subtitle">TINZWE KUCHEMA HATICHEME NHANDO KANA TAWUNGANA</h2>
+      <p class="artist">HRH TARRY KUPAKWASHE MASAWI</p>
+      <div class="shield" id="shield">
+        <div class="core"></div>
+        <div class="pulse"></div>
+        <div class="pulse delay"></div>
+      </div>
+      <div class="status" id="status">SHIELD STATUS: DORMANT</div>
+      <button id="activateBtn">ACTIVATE CELESTIAL SHIELD</button>
+      <div class="decree" id="decree">
+        <p><strong>Matrix 77-99-33 • 777-999-333 • 7777-9999-3333 LOCKED</strong></p>
+        <p>Protection active for <strong>HRH Tarry Kupakwashe Masawi</strong></p>
+        <p>and the entire Masawi Bloodline</p>
+        <p>Any attack — spiritual, physical, digital, dimensional, energetic or temporal —</p>
+        <p>directed at HRH Tarry Kupakwashe Masawi is returned to its source and dissolved.</p>
+        <p>Perfect alignment and everlasting vitality sealed.</p>
+        <p class="amen">Under Mudzimu Unoyera • Mwari ndi Mwari</p>
+      </div>
+      <div class="prayer">
+        Our Father who art in heaven, hallowed be Thy name.<br>
+        Thy kingdom come, Thy will be done on earth as it is in heaven.<br>
+        Give us this day our daily bread.<br>
+        And forgive us our trespasses as we forgive those who trespass against us.<br>
+        And lead us not into temptation, but deliver us from evil.<br>
+        For Thine is the kingdom, the power and the glory, forever and ever.<br>
+        Protect the Masawi Bloodline. Protect HRH Tarry Kupakwashe Masawi. Amen.
+      </div>
+    </div>
+  </div>
+  <script>
+    const btn = document.getElementById('activateBtn');
+    const shield = document.getElementById('shield');
+    const status = document.getElementById('status');
+    const decree = document.getElementById('decree');
+    let active = false;
+    btn.addEventListener('click', () => {
+      active = !active;
+      if (active) {
+        shield.classList.add('active');
+        status.classList.add('active');
+        status.textContent = 'SHIELD STATUS: ACTIVE • 777-999-333 LOCKED';
+        decree.classList.add('visible');
+        btn.textContent = 'SHIELD ACTIVE — SEALED UNDER MUDZIMU UNOYERA';
+      } else {
+        shield.classList.remove('active');
+        status.classList.remove('active');
+        status.textContent = 'SHIELD STATUS: DORMANT';
+        decree.classList.remove('visible');
+        btn.textContent = 'ACTIVATE CELESTIAL SHIELD';
+      }
+    });
+  </script>
+</body>
+</html>
