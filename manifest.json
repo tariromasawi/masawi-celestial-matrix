@@ -1,0 +1,11 @@
+{
+  "name": "Omni-Masawi Celestial Matrix",
+  "short_name": "Masawi Shield",
+  "description": "Celestial protection talisman dedicated to HRH Tarry Kupakwashe Masawi. Matrix 77-99-33 / 777-999-333. Mwari ndi Mwari.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#7c3aed",
+  "orientation": "any",
+  "icons": []
+}

@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7c3aed">
   <title>Omni-Masawi Celestial Matrix — HRH Tarry Kupakwashe Masawi</title>
+  <link rel="manifest" href="./manifest.json">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --purple: #7c3aed;
       --violet: #a78bfa;
-      --deep: #0a001f;
       --glow: #c084fc;
       --green: #4ade80;
     }
@@ -28,7 +29,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 16px 60px;
+      padding: 28px 16px 50px;
     }
     .stars {
       position: fixed;
@@ -53,12 +54,12 @@
       position: relative;
       z-index: 20;
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       max-width: 900px;
     }
     .header-seal h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-size: clamp(1.05rem, 3vw, 1.55rem);
       letter-spacing: 3px;
       background: linear-gradient(90deg, #e0d4ff, #c084fc, #a78bfa, #e0d4ff);
       background-size: 200% auto;
@@ -70,7 +71,7 @@
       to { background-position: 200% center; }
     }
     .header-seal p {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       opacity: 0.7;
       margin-top: 6px;
       letter-spacing: 1px;
@@ -79,13 +80,13 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px;
-      margin: 18px 0 28px;
+      gap: 7px;
+      margin: 14px 0 22px;
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
     .matrix-bar span {
-      padding: 5px 12px;
+      padding: 4px 10px;
       border: 1px solid rgba(167,139,250,0.5);
       border-radius: 6px;
       color: #c9a0ff;
@@ -93,14 +94,14 @@
     }
     @keyframes glow {
       from { box-shadow: 0 0 4px rgba(167,139,250,0.3); }
-      to { box-shadow: 0 0 16px rgba(167,139,250,0.7); }
+      to { box-shadow: 0 0 14px rgba(167,139,250,0.7); }
     }
     .main-grid {
       position: relative;
       z-index: 10;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 20px;
       max-width: 1100px;
       width: 100%;
     }
@@ -108,15 +109,15 @@
       .main-grid { grid-template-columns: 1.1fr 0.9fr; }
     }
     .talisman-card, .telemetry-card {
-      background: rgba(10, 0, 30, 0.78);
+      background: rgba(10, 0, 30, 0.8);
       border: 1px solid rgba(167,139,250,0.3);
-      border-radius: 20px;
-      padding: 28px 22px;
-      box-shadow: 0 0 60px rgba(124,58,237,0.18);
+      border-radius: 18px;
+      padding: 24px 20px;
+      box-shadow: 0 0 50px rgba(124,58,237,0.18);
       backdrop-filter: blur(12px);
     }
     .title {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       letter-spacing: 2px;
       text-align: center;
       margin-bottom: 4px;
@@ -126,30 +127,30 @@
     }
     .subtitle {
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       opacity: 0.85;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .artist {
       text-align: center;
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #c9a0ff;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       letter-spacing: 1.5px;
     }
     .shield {
       position: relative;
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 22px;
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 18px;
     }
     .core {
       position: absolute;
-      inset: 34px;
+      inset: 32px;
       border-radius: 50%;
       background: radial-gradient(circle, #7c3aed 0%, #4c1d95 55%, transparent 70%);
-      box-shadow: 0 0 50px #7c3aed;
+      box-shadow: 0 0 45px #7c3aed;
       transition: all 0.7s ease;
     }
     .pulse, .pulse2 {
@@ -157,53 +158,65 @@
       inset: 0;
       border-radius: 50%;
       border: 2px solid rgba(167,139,250,0.55);
-      animation: pulse 2.6s ease-out infinite;
+      animation: pulse 2.5s ease-out infinite;
     }
-    .pulse2 { animation-delay: 1.3s; }
+    .pulse2 { animation-delay: 1.25s; }
     @keyframes pulse {
       0% { transform: scale(0.5); opacity: 1; }
       100% { transform: scale(1.5); opacity: 0; }
     }
     .shield.active .core {
       background: radial-gradient(circle, #c084fc 0%, #7c3aed 45%, transparent 70%);
-      box-shadow: 0 0 100px #c084fc, 0 0 160px #7c3aed;
+      box-shadow: 0 0 90px #c084fc, 0 0 150px #7c3aed;
     }
     .status {
       text-align: center;
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       letter-spacing: 2px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       color: #a78bfa;
       transition: all 0.4s;
     }
     .status.active {
       color: var(--green);
-      text-shadow: 0 0 14px var(--green);
+      text-shadow: 0 0 12px var(--green);
     }
     #activateBtn {
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 10px;
       background: linear-gradient(135deg, #7c3aed, #4c1d95);
       border: none;
       color: #fff;
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 1.5px;
-      padding: 13px 28px;
+      padding: 12px 26px;
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 0 25px rgba(124,58,237,0.5);
+      box-shadow: 0 0 22px rgba(124,58,237,0.5);
     }
     #activateBtn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 40px rgba(167,139,250,0.8);
+      transform: scale(1.04);
+      box-shadow: 0 0 35px rgba(167,139,250,0.8);
+    }
+    .seal-indicator {
+      text-align: center;
+      font-size: 0.7rem;
+      font-family: 'Orbitron', sans-serif;
+      color: #a78bfa;
+      margin-bottom: 12px;
+      min-height: 18px;
+    }
+    .seal-indicator.locked {
+      color: var(--green);
+      text-shadow: 0 0 8px var(--green);
     }
     .decree {
-      margin-top: 22px;
-      font-size: 0.82rem;
-      line-height: 1.7;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      line-height: 1.65;
       text-align: center;
       opacity: 0;
       max-height: 0;
@@ -212,78 +225,92 @@
     }
     .decree.visible {
       opacity: 1;
-      max-height: 500px;
+      max-height: 480px;
     }
     .decree .amen {
-      margin-top: 12px;
+      margin-top: 10px;
       font-weight: 700;
       color: #c9a0ff;
       letter-spacing: 1.5px;
     }
     .prayer {
-      margin-top: 20px;
-      font-size: 0.68rem;
-      line-height: 1.6;
+      margin-top: 16px;
+      font-size: 0.65rem;
+      line-height: 1.55;
       opacity: 0.5;
       text-align: center;
-      max-width: 480px;
+      max-width: 460px;
       margin-left: auto;
       margin-right: auto;
     }
     .telemetry-card h3 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #a7f3d0;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       letter-spacing: 1px;
     }
     .metrics {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 8px;
+      margin-bottom: 14px;
     }
     .metric {
       background: rgba(0,0,0,0.45);
       border: 1px solid rgba(16,185,129,0.25);
-      border-radius: 10px;
-      padding: 10px;
+      border-radius: 9px;
+      padding: 9px;
     }
     .metric label {
       display: block;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       opacity: 0.6;
       margin-bottom: 2px;
     }
     .metric value {
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #6ee7b7;
     }
     .log-box {
       background: #000;
       border: 1px solid rgba(16,185,129,0.3);
-      border-radius: 10px;
-      height: 160px;
+      border-radius: 9px;
+      height: 150px;
       overflow-y: auto;
-      padding: 10px;
+      padding: 9px;
       font-family: 'Orbitron', monospace;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       color: #6ee7b7;
     }
     .log-box div {
-      margin-bottom: 4px;
-      border-bottom: 1px solid rgba(16,185,129,0.15);
-      padding-bottom: 3px;
+      margin-bottom: 3px;
+      border-bottom: 1px solid rgba(16,185,129,0.12);
+      padding-bottom: 2px;
     }
     .footer-seal {
       position: relative;
       z-index: 10;
-      margin-top: 36px;
+      margin-top: 28px;
       text-align: center;
-      font-size: 0.7rem;
-      opacity: 0.6;
+      font-size: 0.65rem;
+      opacity: 0.55;
       letter-spacing: 1px;
+    }
+    .offline-badge {
+      position: fixed;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(167,139,250,0.4);
+      color: #c9a0ff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      z-index: 50;
+      display: none;
     }
   </style>
 </head>
@@ -316,6 +343,7 @@
         </div>
 
         <div class="status" id="status">SHIELD STATUS: DORMANT</div>
+        <div class="seal-indicator" id="sealIndicator">DEVICE SEAL: NOT LOCKED</div>
         <button id="activateBtn">ACTIVATE CELESTIAL SHIELD</button>
 
         <div class="decree" id="decree">
@@ -372,60 +400,109 @@
     </div>
   </div>
 
+  <div class="offline-badge" id="offlineBadge">OFFLINE MODE • SEAL RETAINED</div>
+
   <script>
+    // ===== Service Worker Registration (Phase 2) =====
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => log('[PHASE 2] Service Worker registered — offline continuity active'))
+        .catch(() => log('[PHASE 2] Service Worker registration failed'));
+    }
+
+    // ===== Persistent Seal (localStorage) =====
+    const SEAL_KEY = 'masawi_celestial_seal_v1';
     const btn = document.getElementById('activateBtn');
     const shield = document.getElementById('shield');
     const status = document.getElementById('status');
     const decree = document.getElementById('decree');
+    const sealIndicator = document.getElementById('sealIndicator');
     let active = false;
 
-    btn.addEventListener('click', () => {
-      active = !active;
-      if (active) {
+    function updateSealUI(isActive) {
+      if (isActive) {
         shield.classList.add('active');
         status.classList.add('active');
         status.textContent = 'SHIELD STATUS: ACTIVE • 777-999-333 LOCKED';
         decree.classList.add('visible');
         btn.textContent = 'SHIELD ACTIVE — SEALED';
-        log('[SHIELD] Celestial dome activated for HRH Tarry Kupakwashe Masawi');
+        sealIndicator.textContent = 'DEVICE SEAL: LOCKED • PERSISTENT';
+        sealIndicator.classList.add('locked');
       } else {
         shield.classList.remove('active');
         status.classList.remove('active');
         status.textContent = 'SHIELD STATUS: DORMANT';
         decree.classList.remove('visible');
         btn.textContent = 'ACTIVATE CELESTIAL SHIELD';
-        log('[SHIELD] Dome set to dormant');
+        sealIndicator.textContent = 'DEVICE SEAL: NOT LOCKED';
+        sealIndicator.classList.remove('locked');
+      }
+    }
+
+    // Restore seal on load
+    if (localStorage.getItem(SEAL_KEY) === 'locked') {
+      active = true;
+      updateSealUI(true);
+      log('[SEAL] Persistent device seal restored for HRH Tarry Kupakwashe Masawi');
+    }
+
+    btn.addEventListener('click', () => {
+      active = !active;
+      if (active) {
+        localStorage.setItem(SEAL_KEY, 'locked');
+        updateSealUI(true);
+        log('[SHIELD] Celestial dome activated + device seal locked');
+      } else {
+        localStorage.removeItem(SEAL_KEY);
+        updateSealUI(false);
+        log('[SHIELD] Dome set to dormant — device seal released');
       }
     });
 
+    // Offline detection
+    function updateOnlineStatus() {
+      const badge = document.getElementById('offlineBadge');
+      if (!navigator.onLine) {
+        badge.style.display = 'block';
+        log('[OFFLINE] Connection lost — seal retained in local memory');
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
+    // Telemetry
     let iterations = 0;
     let nodes = 0;
 
     function log(msg) {
       const box = document.getElementById('log-box');
+      if (!box) return;
       const time = new Date().toISOString().split('T')[1].slice(0,8);
       const line = document.createElement('div');
       line.textContent = `[${time}] ${msg}`;
       box.prepend(line);
-      if (box.children.length > 30) box.removeChild(box.lastChild);
+      if (box.children.length > 35) box.removeChild(box.lastChild);
     }
 
     function updateTelemetry() {
       iterations++;
-      nodes += Math.floor(Math.random() * 1200) + 400;
+      nodes += Math.floor(Math.random() * 1400) + 500;
       const harmonic = (Math.sin(Date.now() * 0.001) * 777999333).toFixed(2);
 
       document.getElementById('metric-harmonic').textContent = harmonic;
       document.getElementById('metric-iterations').textContent = iterations.toLocaleString();
       document.getElementById('metric-nodes').textContent = nodes.toLocaleString();
 
-      if (iterations % 8 === 0) {
+      if (iterations % 9 === 0) {
         log(`[MATRIX] Harmonic ${harmonic} | Nodes ${nodes.toLocaleString()} | Tarry Kupakwashe Masawi sealed`);
       }
     }
 
-    setInterval(updateTelemetry, 900);
-    log('[SYSTEM] Advanced Celestial Shield online');
+    setInterval(updateTelemetry, 850);
+    log('[SYSTEM] Phase 2 online — Offline continuity + persistent seal');
     log('[SYSTEM] 15 backend engines registered');
     log('[SYSTEM] Protection field dedicated to HRH Tarry Kupakwashe Masawi');
   </script>
